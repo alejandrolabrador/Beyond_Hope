@@ -1,0 +1,1 @@
+IN PROGESS. A survival game that follows Antonio' story (our main character) throughout his native country after several earthquakes affected life on earth. His mission is to reach a militar base safely, however this wont be that easy, he will have to confront fires, cracks and floods caused by earthquakes.
