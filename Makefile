@@ -5,6 +5,7 @@ GAME = Beyond_Hope.out
 
 INCLUDEDIR = ./include
 SRCDIR = ./sources
+OBJDIR = ./objects
 
 INCLUDES = $(wildcard $(INCLUDEDIR)/*.hpp)
 SOURCES = $(wildcard $(SRCDIR)/*.cpp)
