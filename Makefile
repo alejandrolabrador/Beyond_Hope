@@ -1,4 +1,4 @@
-#This is our MakeFile. 
+#This is our MakeFile. Just a test, need to be kinda modified.
 
 CXX =g++ -std=c++17
 GAME = Beyond_Hope.out
