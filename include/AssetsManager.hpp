@@ -7,13 +7,15 @@ class AssetsManager{
 
 public:
 
-sf::Texture useTexture(const std::string, bool = false); 
-sf::Music playBackgroundMusic(const std::string, bool = false);
-sf::Sound especificSound(const std::string, bool = false);  
+//~AssetsManager(); 
+
+sf::Texture & useTexture(const std::string &); 
+sf::Music & playBackgroundMusic(const std::string &);
+sf::Sound & especificSound(const std::string &);  
 
 private:
 
-
+std::map<std::string, sf::Texture> textures; 
 
 
 };
