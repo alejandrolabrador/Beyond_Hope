@@ -1,5 +1,12 @@
 #define PLAYER_HPP
 
+#include <vector>
+
+# ifndef ASSETS_MANAGER_HPP
+# include <AssetsManager.hpp>
+# endif
+
+
 class Player{
 
 public:

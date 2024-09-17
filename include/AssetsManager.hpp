@@ -1,7 +1,9 @@
+#ifndef ASSETS_MANAGER_HPP
 #define ASSETS_MANAGER_HPP
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <iostream>
 
 class AssetsManager{
 
@@ -17,5 +19,6 @@ private:
 
 std::map<std::string, sf::Texture> textures; 
 
-
 };
+
+#endif  // ASSETS_MANAGER_HPP

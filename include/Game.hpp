@@ -1,17 +1,29 @@
 #define GAME_HPP
 
-#include<AssetsManager.hpp>
-#include<Menu.hpp>
-#include<Player.hpp>
+# ifndef PLAYER_HPP
+# include <Player.hpp>
+# endif
+
+# ifndef MENU_HPP
+# include <Menu.hpp>
+# endif
+
+# ifndef ASSETS_MANAGER_HPP
+# include <AssetsManager.hpp>
+# endif
+
 class Game {
 
 public: 
 
-//~Game();
+Game(sf::RenderWindow& window);
+Game(); 
+
 void start(); 
 
 private: 
 
-   unsigned int justWhatever;
+   Menu menu; 
+   sf::RenderWindow window; 
 
 };
