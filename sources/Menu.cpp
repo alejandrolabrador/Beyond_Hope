@@ -1,35 +1,47 @@
 #include <Menu.hpp>
 
 
+Menu::Menu(sf::RenderWindow & menuScreen) {
+    AssetsManager asset; 
+    auto texture {asset.useTexture("/menu/menuPlay.png")};
 
-Menu::Menu(sf::RenderWindow & menuScreen){
+    sf::Sprite sprite; 
+    sprite.setTexture(texture); 
 
-AssetsManager asset; 
+    sf::Vector2u imageSize = texture.getSize(); 
+    sf::Vector2u windowSize = menuScreen.getSize();
 
-auto texture {asset.useTexture("/menu/menuPlay.png")};
+    float scaleX = (float)windowSize.x / imageSize.x;
+    float scaleY = (float)windowSize.y / imageSize.y;
 
-sf::Sprite sprite; 
-sprite.setTexture(texture); 
+    sprite.setScale(scaleX, scaleY);
 
-sf::Vector2u imageSize = texture.getSize(); 
+    bool closeWindow = false; 
 
-sf::Vector2u windowSize = menuScreen.getSize();
+    while (menuScreen.isOpen() && !closeWindow) {
+        sf::Event event;
 
-float scaleX = (float)windowSize.x / imageSize.x;
-float scaleY = (float)windowSize.y / imageSize.y;
+        while (menuScreen.pollEvent(event)) {
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::Escape) {
+                    closeWindow = true; 
+            }
+        }
 
-sprite.setScale(scaleX, scaleY);
-
-while (menuScreen.isOpen()) {
-    sf::Event event;
-    while (menuScreen.pollEvent(event)) {
-        if (event.type == sf::Event::Closed)
-            menuScreen.close();
+        menuScreen.clear();
+        menuScreen.draw(sprite);
+        menuScreen.display();    
     }
 
-    menuScreen.clear();
-    menuScreen.draw(sprite);
-    menuScreen.display();
+    if (closeWindow) {
+        menuScreen.close();
+    }
+}}
+
+    //menuScreen.close(); 
+
+
+    /*
 
     while(true){
 
@@ -39,11 +51,8 @@ while (menuScreen.isOpen()) {
     auto mapTexture {map.useTexture("/maps/actualBeachMap.png")}; 
 
 
-    }
-}
-}
+    }}*/
 
-}
 
 
 
