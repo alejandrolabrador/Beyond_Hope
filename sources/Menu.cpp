@@ -1,76 +1,132 @@
 #include <Menu.hpp>
 
 
-Menu::Menu(sf::RenderWindow & menuScreen) {
+Menu::Menu(sf::RenderWindow & menuScreen) : menuScreen_(menuScreen){
+
     AssetsManager asset; 
-    auto texture {asset.useTexture("/menu/menuPlay.png")};
+    sf::Texture texturePlay {asset.useTexture("/menu/menuPlay.png")};
+    sf::Texture textureQuit {asset.useTexture("/menu/MenuExit.png")}; 
+    sf::Texture textureQuitContinue {asset.useTexture("/menu/MenuContinue.png")};
+    sf::Texture textureContinue {asset.useTexture("/menu/MenuContinue.png")};
 
-    sf::Sprite sprite; 
-    sprite.setTexture(texture); 
+    spriteQuit.setTexture(textureQuit);
+    spritePlay.setTexture(texturePlay); 
+    spriteQuitContinue.setTexture(textureQuitContinue);
+    spriteContinue.setTexture(textureContinue);
 
-    sf::Vector2u imageSize = texture.getSize(); 
+    sf::Vector2u imageSize = texturePlay.getSize(); 
     sf::Vector2u windowSize = menuScreen.getSize();
 
     float scaleX = (float)windowSize.x / imageSize.x;
     float scaleY = (float)windowSize.y / imageSize.y;
 
-    sprite.setScale(scaleX, scaleY);
+    spritePlay.setScale(scaleX, scaleY);
+    spriteQuit.setScale(scaleX, scaleY);
+    spriteQuitContinue.setScale(scaleX, scaleY); 
+    spriteContinue.setScale(scaleX, scaleY); 
 
-    bool closeWindow = false; 
 
-    while (menuScreen.isOpen() && !closeWindow) {
+    bool closeWindow = false;
+    state = Option::Play;
+
+    while (menuScreen_.isOpen() && !closeWindow) {
         sf::Event event;
-
-        while (menuScreen.pollEvent(event)) {
+        while (menuScreen_.pollEvent(event)) {
+            
             if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::Escape) {
                     closeWindow = true; 
+                }
+                if (event.key.code == sf::Keyboard::Down) {
+                    state = Option::Quit; 
+                }
+                if (event.key.code == sf::Keyboard::Up) {
+                    state = Option::Play; 
+                }
+                if (event.key.code == sf::Keyboard::Enter && state == Option::Quit) {
+                    closeWindow = true; 
+                }
             }
         }
+        menuScreen_.clear(); 
 
-        menuScreen.clear();
-        menuScreen.draw(sprite);
-        menuScreen.display();    
+        switch (state) {
+            case Option::Play: 
+                menuScreen_.draw(spritePlay);
+                break;  
+
+            case Option::Quit:
+                menuScreen_.draw(spriteQuit); 
+                break;  
+
+            case Option::QuitContinue:
+                menuScreen_.draw(spriteQuitContinue);
+                break;
+
+            case Option::Continue:
+                menuScreen_.draw(spriteContinue); 
+                break; 
+        }
+
+        menuScreen_.display();
+
+        if (closeWindow) {
+            menuScreen_.close(); 
+        }
     }
-
-    if (closeWindow) {
-        menuScreen.close();
-    }
-}}
-
-    //menuScreen.close(); 
-
-
-    /*
-
-    while(true){
-
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return)){
-        
-    auto state {Option::Continue}; 
-    auto mapTexture {map.useTexture("/maps/actualBeachMap.png")}; 
-
-
-    }}*/
-
-
+      
+}
 
 
 void Menu::startGame(){
- 
-    AssetsManager menu; 
-    sf::Texture texture;  
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)){
+   /*bool closeWindow = false;
+   state = Option::Play;
 
-    switch(state){
+    while (menuScreen_.isOpen() && !closeWindow) {
+        sf::Event event;
+        while (menuScreen_.pollEvent(event)) {
+            
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::Escape) {
+                    closeWindow = true; 
+                }
+                if (event.key.code == sf::Keyboard::Down) {
+                    state = Option::Quit; 
+                }
+                if (event.key.code == sf::Keyboard::Up) {
+                    state = Option::Play; 
+                }
+                if (event.key.code == sf::Keyboard::Enter && state == Option::Quit) {
+                    closeWindow = true; 
+                }
+            }
+        }
+        menuScreen_.clear(); 
 
-    case Option::Continue:
-    texture = menu.useTexture("/menu/MenuContinue");
-    break; 
-    case Option::Quit:
-    break; 
+        switch (state) {
+            case Option::Play: 
+                menuScreen_.draw(spritePlay);
+                break;  
 
+            case Option::Quit:
+                menuScreen_.draw(spriteQuit); 
+                break;  
 
-    }}
+            case Option::QuitContinue:
+                menuScreen_.draw(spriteQuitContinue);
+                break;
+
+            case Option::Continue:
+                menuScreen_.draw(spriteContinue); 
+                break; 
+        }
+
+        menuScreen_.display();
+
+        if (closeWindow) {
+            menuScreen_.close(); 
+        }
+    }
+*/
 }

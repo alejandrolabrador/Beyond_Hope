@@ -20,9 +20,15 @@ enum class Option{
     Play, 
     Quit,
     Continue,
+    QuitContinue,
     };
   
-Option state; 
+Option state = Option::Play; 
 AssetsManager map; 
+sf::Sprite spritePlay;
+sf::Sprite spriteQuit;  
+sf::Sprite spriteQuitContinue;
+sf::Sprite spriteContinue; 
+sf::RenderWindow &menuScreen_; //Its used to change between pngs, while a key is pressed.
 
 };
