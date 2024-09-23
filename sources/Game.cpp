@@ -4,7 +4,7 @@
 Game::Game(sf::RenderWindow& window) : menu(window) {
 
 menu.startGame(); 
-//start(); 
+start(); 
 
 }
 

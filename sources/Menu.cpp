@@ -46,6 +46,9 @@ Menu::Menu(sf::RenderWindow & menuScreen) : menuScreen_(menuScreen){
                 if (event.key.code == sf::Keyboard::Enter && state == Option::Quit) {
                     closeWindow = true; 
                 }
+                if(event.key.code == sf::Keyboard::Enter && state == Option::Play){
+                    //Implementation to what we expect 4 the game to show.
+                }
             }
         }
         menuScreen_.clear(); 
