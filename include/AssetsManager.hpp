@@ -4,6 +4,11 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
+#include <stdexcept>
+#include <list.hpp>
+#include <array.hpp>
+#include <set.hpp>
+
 
 class AssetsManager{
 

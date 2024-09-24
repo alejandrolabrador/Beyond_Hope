@@ -12,18 +12,24 @@
 # include <AssetsManager.hpp>
 # endif
 
-class Game {
+#ifndef VIEW_HPP
+#include <View.hpp>
+#endif
+
+class Game{
 
 public: 
 
 Game(sf::RenderWindow& window);
 Game(); 
 
-void start(); 
+void start(Menu::Option option); 
+
 
 private: 
 
    Menu menu; 
    sf::RenderWindow window; 
+   Menu::Option state; 
 
 };

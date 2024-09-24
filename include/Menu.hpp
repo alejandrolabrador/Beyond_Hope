@@ -10,11 +10,8 @@ class Menu{
 
 public:
 
+
 Menu(sf::RenderWindow & screenMenu); 
-
-void startGame(); 
-
-private:
 
 enum class Option{ 
     Play, 
@@ -24,11 +21,18 @@ enum class Option{
     };
   
 Option state = Option::Play; 
+
+Option startGame(sf::RenderWindow & window); 
+
+Option getSelectedOption() { return state; }
+
+private:
+
 AssetsManager map; 
 sf::Sprite spritePlay;
 sf::Sprite spriteQuit;  
 sf::Sprite spriteQuitContinue;
 sf::Sprite spriteContinue; 
-sf::RenderWindow &menuScreen_; //Its used to change between pngs, while a key is pressed.
+
 
 };
