@@ -1,6 +1,6 @@
 #define MENU_HPP
 
-# ifndef ASSET_MANAGER_HPP
+# ifndef ASSETS_MANAGER_HPP
 # include <AssetsManager.hpp>
 # endif
 

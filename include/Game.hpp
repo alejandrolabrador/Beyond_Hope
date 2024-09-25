@@ -16,6 +16,10 @@
 #include <View.hpp>
 #endif
 
+#ifndef MAPS_HPP
+#include <Maps.hpp>
+#endif
+
 class Game{
 
 public: 
@@ -31,5 +35,6 @@ private:
    Menu menu; 
    sf::RenderWindow window; 
    Menu::Option state; 
+   Maps maps; 
 
 };
