@@ -6,7 +6,7 @@
 class View: sf::View{
 
 public:
-
+ 
 void viewCharacter(sf::Sprite * player, sf::Sprite * map);
 void updateViewBounds(sf::Sprite * map); 
 

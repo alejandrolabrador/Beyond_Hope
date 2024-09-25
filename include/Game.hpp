@@ -27,14 +27,14 @@ public:
 Game(sf::RenderWindow& window);
 Game(); 
 
-void start(Menu::Option option); 
+void start(sf::RenderWindow & option); 
 
 
 private: 
 
    Menu menu; 
-   sf::RenderWindow window; 
-   Menu::Option state; 
+   sf::RenderWindow window;
    Maps maps; 
+   View view; 
 
 };

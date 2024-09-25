@@ -1,54 +1,44 @@
 #include <Game.hpp>
 
 
-Game::Game(sf::RenderWindow& window) : menu(window) {
+Game::Game(sf::RenderWindow& window) : menu(window, Menu::Option::Play) {
 
-menu;  
-state = menu.getSelectedOption();
-start(state);
+menu; 
+start(window);
 }
 
 
-void Game::start(Menu::Option gameOption){
-
-sf::VideoMode screen = sf::VideoMode::getFullscreenModes()[0]; 
-	sf::RenderWindow window(screen, "Beyond Hope", sf::Style::Fullscreen);
-
-    if(gameOption == Menu::Option::Play){
-
-while(!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)){
+void Game::start(sf::RenderWindow & screen){
 
 AssetsManager asset;
 sf::Texture textureMap {asset.useTexture("/maps/firstMap.png")};
-sf::Sprite spriteMap; 
-spriteMap.setTexture(textureMap);
-
 sf::Texture texturePlayer {asset.useTexture("/antonio/Frontal/character_frontal.png")}; 
+
+sf::Sprite spriteMap;
 sf::Sprite spritePlayer; 
-spritePlayer.setTexture(texturePlayer);
 
-View viewMap; // Create the View object once
+spriteMap.setTexture(textureMap);
+spritePlayer.setTexture(texturePlayer); 
 
-if (!window.isOpen()) {
-    std::cerr << "Failed to create window!" << std::endl;
-
-}
-while(window.isOpen()){
+while(screen.isOpen()){
     sf::Event event; 
 
-    while(window.pollEvent(event)){
-        // Handle events here, e.g. update the player sprite position
-        // ...
+    while(screen.pollEvent(event)){
 
-        viewMap.viewCharacter(&spritePlayer, &spriteMap);
+        view.viewCharacter(&spritePlayer, &spriteMap);
     }
 
-    window.clear();
-    window.draw(spritePlayer); 
-    window.draw(spriteMap);
-    window.display();
+    screen.clear();
+    screen.draw(spriteMap);
+    screen.draw(spritePlayer); 
+    screen.display();
+
+    if(event.key.code ==  sf::Keyboard::Escape){
+
+        Menu menucito(screen, Menu::Option::Continue); 
 }
-}
+
+
 }}
 
   

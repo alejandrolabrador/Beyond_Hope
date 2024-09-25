@@ -6,12 +6,14 @@
 
 #include <SFML/Window.hpp>
 
+#ifndef VIEW_HPP
+#include <View.hpp>
+#endif
+
 class Menu{
 
 public:
 
-
-Menu(sf::RenderWindow & screenMenu); 
 
 enum class Option{ 
     Play, 
@@ -19,12 +21,13 @@ enum class Option{
     Continue,
     QuitContinue,
     };
+    
+Menu(sf::RenderWindow & screenMenu, Option screenMode); 
   
 Option state = Option::Play; 
 
-Option startGame(sf::RenderWindow & window); 
+Option startGame(sf::RenderWindow & window, Option mood); 
 
-Option getSelectedOption() { return state; }
 
 private:
 
