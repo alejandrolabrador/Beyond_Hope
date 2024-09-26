@@ -37,4 +37,5 @@ private:
    Maps maps; 
    View view; 
    Player player; 
+   AssetsManager asset; 
 };

@@ -17,12 +17,13 @@ public:
 //~AssetsManager(); 
 
 sf::Texture & useTexture(const std::string &); 
-sf::Music & playBackgroundMusic(const std::string &);
+sf::Music & playBackgroundMusic(const std::string &, bool repeatMusic);
 sf::Sound & especificSound(const std::string &);  
 
 private:
 
 std::map<std::string, sf::Texture> textures; 
+std::map<std::string, sf::Music> musics;
 
 };
 

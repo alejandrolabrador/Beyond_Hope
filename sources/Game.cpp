@@ -10,9 +10,9 @@ start(window);
 
 void Game::start(sf::RenderWindow & screen){
 
-AssetsManager asset;
 sf::Sprite spriteMap;
 sf::Sprite spritePlayer; 
+auto && musicGame {asset.playBackgroundMusic("BeyondHopeMusic.mp3", true)};
 
 sf::Texture textureMap {asset.useTexture("/maps/firstMap.png")};
 spriteMap.setTexture(textureMap);
@@ -34,6 +34,7 @@ while(screen.isOpen()){
 
     if(event.key.code ==  sf::Keyboard::Escape){
 
+        musicGame.stop(); 
         Menu menuContinue(screen, Menu::Option::Continue); 
     }
 
