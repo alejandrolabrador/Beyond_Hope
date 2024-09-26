@@ -15,7 +15,7 @@ class Maps{
 
     private:
 
-    Designar::RankedTreap<sf::RenderWindow> tree; 
+    Designar::RankedTreap<sf::RenderWindow> mapTree; 
 
 
 };

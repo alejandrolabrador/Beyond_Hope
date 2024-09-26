@@ -2,6 +2,10 @@
 
 #include <vector>
 
+#ifndef ASSETS_MANAGER_HPP
+#include <AssetsManager.cpp>
+#endif
+
 class Inventory {
 
 public:
@@ -9,6 +13,7 @@ public:
 void addItem(items item, int quantity);
 void quitItem(items item, int quantity);
 int getItemQuantity(items item) const;
+void addNewOne(sf::Sprite * map); 
 
 std::vector<items> getItems()const;
 
@@ -20,7 +25,6 @@ std::vector<std::tuple<items, int>> quantityItems;
 
 enum class items{
 
-water,
 food, 
 medicine, 
 

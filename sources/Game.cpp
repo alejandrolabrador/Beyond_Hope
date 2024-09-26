@@ -11,14 +11,13 @@ start(window);
 void Game::start(sf::RenderWindow & screen){
 
 AssetsManager asset;
-sf::Texture textureMap {asset.useTexture("/maps/firstMap.png")};
-sf::Texture texturePlayer {asset.useTexture("/antonio/Frontal/character_frontal.png")}; 
-
 sf::Sprite spriteMap;
 sf::Sprite spritePlayer; 
 
+sf::Texture textureMap {asset.useTexture("/maps/firstMap.png")};
 spriteMap.setTexture(textureMap);
-spritePlayer.setTexture(texturePlayer); 
+
+spritePlayer = player.setPlayer("/antonio/Frontal/character_frontal.png");
 
 while(screen.isOpen()){
     sf::Event event; 
@@ -35,8 +34,8 @@ while(screen.isOpen()){
 
     if(event.key.code ==  sf::Keyboard::Escape){
 
-        Menu menucito(screen, Menu::Option::Continue); 
-}
+        Menu menuContinue(screen, Menu::Option::Continue); 
+    }
 
 
 }}

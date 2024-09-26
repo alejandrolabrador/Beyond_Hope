@@ -36,5 +36,5 @@ private:
    sf::RenderWindow window;
    Maps maps; 
    View view; 
-
+   Player player; 
 };
