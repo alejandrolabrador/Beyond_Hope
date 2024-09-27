@@ -10,12 +10,12 @@
 
 class Maps{
 
-    void insertMap(sf::RenderWindow map, int priority); 
-
+    void insertMap(sf::Texture map, int priority); 
+    
 
     private:
 
-    Designar::RankedTreap<sf::RenderWindow> mapTree; 
+    Designar::RankedTreap<sf::Texture> mapTree; 
 
 
 };

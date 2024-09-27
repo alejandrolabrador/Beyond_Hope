@@ -23,7 +23,7 @@ sf::Sound & especificSound(const std::string &);
 private:
 
 std::map<std::string, sf::Texture> textures; 
-std::map<std::string, sf::Music> musics;
+std::map<std::string, std::unique_ptr<sf::Music>> musics;
 
 };
 

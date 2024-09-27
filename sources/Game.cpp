@@ -12,7 +12,7 @@ void Game::start(sf::RenderWindow & screen){
 
 sf::Sprite spriteMap;
 sf::Sprite spritePlayer; 
-auto && musicGame {asset.playBackgroundMusic("BeyondHopeMusic.mp3", true)};
+auto && musicGame {asset.playBackgroundMusic("/BeyondHopeMusic.wav", true)};
 
 sf::Texture textureMap {asset.useTexture("/maps/firstMap.png")};
 spriteMap.setTexture(textureMap);
