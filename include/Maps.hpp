@@ -10,12 +10,11 @@
 
 class Maps{
 
-    void insertMap(sf::Texture map, int priority); 
+    void insertMap(sf::Texture * map, unsigned int priority); 
     
 
     private:
 
-    Designar::RankedTreap<sf::Texture> mapTree; 
-
+    Designar::RankedTreap<std::pair<sf::Texture*, unsigned int>, std::less<std::pair<sf::Texture*, unsigned int>>> mapTree;
 
 };

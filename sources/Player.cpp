@@ -9,3 +9,8 @@ sf::Sprite & Player::setPlayer(const std::string & file) {
      
     return spritePlayer; 
 }
+
+void Player::updateStatus(){
+
+    
+}

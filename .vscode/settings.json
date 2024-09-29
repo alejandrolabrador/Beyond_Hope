@@ -113,6 +113,8 @@
     "regex": "cpp",
     "mutex": "cpp",
     "shared_mutex": "cpp",
-    "thread": "cpp"
+    "thread": "cpp",
+    "codecvt": "cpp",
+    "iomanip": "cpp"
   }
 }

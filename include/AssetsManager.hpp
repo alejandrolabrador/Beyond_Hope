@@ -8,6 +8,8 @@
 #include <list.hpp>
 #include <array.hpp>
 #include <set.hpp>
+#include <vector>
+#include <filesystem>
 
 
 class AssetsManager{

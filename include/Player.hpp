@@ -1,6 +1,5 @@
 #define PLAYER_HPP
 
-#include <vector>
 
 # ifndef ASSETS_MANAGER_HPP
 # include <AssetsManager.hpp>
@@ -20,7 +19,7 @@ bool dead();
 private:
 
 unsigned int health; 
-std::vector<sf::Texture> states;  
+std::vector<sf::Texture *> states;  
 AssetsManager assets; 
 sf::Sprite spritePlayer;
 sf::Texture texturePlayer; 
