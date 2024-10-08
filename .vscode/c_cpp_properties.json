@@ -4,7 +4,7 @@
           "name": "Linux",
           "includePath": [
               "${workspaceFolder}/**",
-              "/home/luis/Escritorio/designar_library/DeSiGNAR-2.0.0/include"
+              "/home/jhoseline/DeSiGNAR/include"
           ],
           "defines": [],
           "compilerPath": "/usr/bin/gcc",
