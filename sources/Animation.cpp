@@ -1,18 +1,10 @@
 #include <Animation.hpp>
 
+std::map<unsigned int, std::vector<sf::Sprite>> Animation::spriteCache;
 
-/*Animation::Animation(const std::string& file){
-
-    texturePlayer = assets.useTexture(file);
-    spritePlayer.setTexture(texturePlayer); 
-    spritePlayer.setScale(0.5f, 0.5f); 
-    spritePlayer.setPosition(231, 483); 
-}*/
-
-std::vector<sf::Sprite> Animation::playerStates(unsigned int movement, sf::RenderWindow * player) {
-
+std::vector<sf::Sprite> Animation::playerStates(unsigned int movement){
+   
     if (spriteCache.count(movement) > 0) {
-
         return spriteCache[movement];
     }
 
@@ -21,7 +13,6 @@ std::vector<sf::Sprite> Animation::playerStates(unsigned int movement, sf::Rende
     std::string internalFolder; 
     std::string fullPath; 
     sf::Texture texture;
-    sf::Sprite sprite;
 
     switch(movement){
         case 0:
@@ -31,7 +22,7 @@ std::vector<sf::Sprite> Animation::playerStates(unsigned int movement, sf::Rende
             internalFolder = "/antonio/Left";
             break;
         case 2:
-            internalFolder = "/antonio/Jumping_Right"; 
+            internalFolder = "/antonio/jumpingRight"; 
             break;
     }  
 
@@ -46,15 +37,17 @@ std::vector<sf::Sprite> Animation::playerStates(unsigned int movement, sf::Rende
     }
 
     std::vector<sf::Sprite> sprites;
+    
+
     for (const auto frame: frames){
-        sprite.setTexture(frame);
+        
+        sf::Sprite sprite;
+        sprite.setTexture(frame); 
         sprites.emplace_back(sprite);
     }
 
-    
-    spriteCache[movement] = sprites; //Necessary to check in next interaction.
+    spriteCache[movement] = sprites; 
 
     return sprites;
 }
-
 

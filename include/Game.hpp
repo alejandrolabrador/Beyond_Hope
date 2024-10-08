@@ -20,10 +20,6 @@
 #include <Maps.hpp>
 #endif
 
-#ifndef MOVEMENTS_HPP
-#include <Movements.hpp>
-#endif
-
 #ifndef ANIMATION_HPP
 #include <Animation.hpp>
 #endif
@@ -44,7 +40,5 @@ private:
    sf::RenderWindow window;
    Maps maps; 
    View view; 
-   Player player; 
    AssetsManager asset; 
-   Movements movements; 
 };

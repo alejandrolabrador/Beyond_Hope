@@ -17,9 +17,9 @@ auto && musicGame {asset.playBackgroundMusic("/BeyondHopeMusic.wav", true)};
 sf::Texture textureMap {asset.useTexture("/maps/firstMap.png")};
 spriteMap.setTexture(textureMap);
 
-spritePlayer = player.setPlayer("/antonio/Frontal/character_frontal.png");
-
 while (screen.isOpen()) {
+
+    std::unique_ptr<Player> player = std::make_unique<Player>("/antonio/Frontal/character_frontal.png");  
     sf::Event event;
     
     while (screen.pollEvent(event)) {
@@ -32,7 +32,7 @@ while (screen.isOpen()) {
                 Menu menuContinue(screen, Menu::Option::Continue);
 
             } else {
-                movements.handleInput(event, &screen);
+                player->handleInput(event, &screen);
             }
         }
         view.viewCharacter(&spritePlayer, &spriteMap);
@@ -40,7 +40,7 @@ while (screen.isOpen()) {
 
     screen.clear();
     screen.draw(spriteMap);
-    screen.draw(spritePlayer);
+    screen.draw(*player);
     screen.display();
 }}
 

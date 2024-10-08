@@ -9,19 +9,14 @@ class Animation {
 
     public:
     
-    //Animation(); 
-    //Animation(const std::string & file);
-
-    std::vector<sf::Sprite> playerStates(unsigned int movements, sf::RenderWindow * screen);
-    //virtual void draw(sf::RenderTarget&, sf::RenderStates) const; 
+    std::vector<sf::Sprite> playerStates(unsigned int movements);
 
     private:
 
-    AssetsManager assets; 
-    std::vector<sf::Sprite> sprites;
+    AssetsManager assets;  
     sf::Sprite spritePlayer;
     sf::Texture texturePlayer; 
-    std::map<unsigned int, std::vector<sf::Sprite>> spriteCache; 
+    static std::map<unsigned int, std::vector<sf::Sprite>> spriteCache;
 };
 
 #endif  // ANIMATION_HPP
