@@ -23,16 +23,17 @@ void virtual draw(sf::RenderTarget& target, sf::RenderStates states) const overr
 
 private:
 
-void moveRight(sf::RenderWindow * position);
-void moveLeft(sf::RenderWindow * position);
-void jump(sf::RenderWindow * position); 
+void moveRight();
+void moveLeft();
+void jump(); 
 void updateSpritePosition(); 
 
 unsigned int health; 
 std::vector<sf::Texture *> states;  
 sf::Sprite spritePlayer;
 sf::Texture texturePlayer; 
-std::vector<sf::Sprite> statesPlayer; 
+std::vector<sf::Sprite> statesPlayer;
+std::vector<sf::Texture> playerTextures;  
 float velocityPlayer;
 float jumpVelocity;
 sf::Vector2f playerPosition;

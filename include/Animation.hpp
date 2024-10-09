@@ -9,13 +9,17 @@ class Animation {
 
     public:
     
-    std::vector<sf::Sprite> playerStates(unsigned int movements);
+    std::vector<sf::Sprite> playerSprites(unsigned int movements);
+
+    
+    std::vector<sf::Texture> playerStates(unsigned int movement); 
 
     private:
 
     AssetsManager assets;  
     sf::Sprite spritePlayer;
     sf::Texture texturePlayer; 
+    static std::map<unsigned int, std::vector<sf::Texture>> textureCache; 
     static std::map<unsigned int, std::vector<sf::Sprite>> spriteCache;
 };
 

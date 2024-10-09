@@ -1,38 +1,45 @@
 #include <Player.hpp>
 
-Player::Player(const std::string & file) : velocityPlayer(5.0f), jumpVelocity(10.0f), playerPosition(100, 100), isJumping(false), currentPosition(0) {
+Player::Player(const std::string & file) : velocityPlayer(5.0f), jumpVelocity(10.0f), playerPosition(231, 479), isJumping(false){
 
+    currentPosition = 0;
     texturePlayer = assets.useTexture(file);
     spritePlayer.setTexture(texturePlayer); 
     spritePlayer.setScale(0.5f, 0.5f); 
-    spritePlayer.setPosition(231, 485);  
-    
+    spritePlayer.setPosition(playerPosition);   
 
 }
 
+void Player::moveRight() {
 
+    playerTextures = animation.playerStates(0);
 
-void Player::moveRight(sf::RenderWindow * screen) {
+    for(auto player : playerTextures){
 
-    statesPlayer = animation.playerStates(0);
-    spritePlayer = statesPlayer[currentPosition]; 
-    currentPosition = (currentPosition + 1) % statesPlayer.size(); 
+    spritePlayer.setTexture(playerTextures[currentPosition]);
+    currentPosition++; 
+    currentPosition%=(int)playerTextures.size();
     playerPosition.x += velocityPlayer;
     spritePlayer.setPosition(playerPosition);
+    }
 }
 
-void Player::moveLeft(sf::RenderWindow * screen) {
-    statesPlayer = animation.playerStates(1); 
-    spritePlayer = statesPlayer[currentPosition]; 
-    currentPosition = (currentPosition + 1) % statesPlayer.size(); 
+void Player::moveLeft() {
+    
+    playerTextures = animation.playerStates(1);
+
+    for(auto player : playerTextures){
+
+    spritePlayer.setTexture(playerTextures[currentPosition]);
+    currentPosition++; 
+    currentPosition%=(int)playerTextures.size();
     playerPosition.x -= velocityPlayer;
-    spritePlayer.setPosition(playerPosition); 
-   
+    spritePlayer.setPosition(playerPosition);}
 }
 
-void Player::jump(sf::RenderWindow * screen) {
+void Player::jump() {
     if (!isJumping) {
-        statesPlayer = animation.playerStates(2); 
+        playerTextures = animation.playerStates(2);
         jumpVelocity = -10.0f;
         isJumping = true;
     }
@@ -57,13 +64,13 @@ void Player::handleInput(const sf::Event &event, sf::RenderWindow * screen) {
     if (event.type == sf::Event::KeyPressed) {
         switch (event.key.code) {
             case sf::Keyboard::D:
-                moveRight(screen);
+                moveRight();
                 break;
             case sf::Keyboard::A:
-                moveLeft(screen);
+                moveLeft();
                 break;
             case sf::Keyboard::Space:
-                jump(screen);
+                jump();
                 break;
         }
     }
