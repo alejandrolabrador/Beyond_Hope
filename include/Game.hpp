@@ -24,6 +24,10 @@
 #include <Animation.hpp>
 #endif
 
+#ifndef NPC_PLAYER_HPP
+#include <NpcPlayer.hpp>
+#endif
+
 class Game{
 
 public: 

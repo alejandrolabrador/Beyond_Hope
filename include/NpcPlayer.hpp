@@ -5,14 +5,15 @@
 #endif
 
 
-class NpcPlayer : Player{
+class NpcPlayer: public Player{
+
+public: 
 
 NpcPlayer(const std::string & file); 
 
 private:
 
-sf::Texture texturePlayer; 
-sf::Sprite spritePlayer; 
 sf::Vector2f playerPosition;
+void virtual draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 };

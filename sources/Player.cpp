@@ -1,6 +1,6 @@
 #include <Player.hpp>
 
-Player::Player(const std::string & file) : velocityPlayer(5.0f), jumpVelocity(10.0f), playerPosition(231, 479), isJumping(false){
+Player::Player(const std::string & file) : velocityPlayer(5.0f), jumpVelocity(10.0f), playerPosition(231, 493), isJumping(false){
 
     currentPosition = 0;
     texturePlayer = assets.useTexture(file);
