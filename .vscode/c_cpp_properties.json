@@ -1,17 +1,17 @@
 {
   "configurations": [
-      {
-          "name": "Linux",
-          "includePath": [
-              "${workspaceFolder}/**",
-              "/home/luis/Escritorio/designar_library/DeSiGNAR-2.0.0/include"
-          ],
-          "defines": [],
-          "compilerPath": "/usr/bin/gcc",
-          "cStandard": "c17",
-          "cppStandard": "c++17",
-          "intelliSenseMode": "linux-gcc-x64"
-      }
+    {
+      "name": "linux-gcc-x64",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "/home/jhoseline/DeSiGNAR/include"
+      ],
+      "defines": [],
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "${default}",
+      "cppStandard": "${default}",
+      "intelliSenseMode": "linux-gcc-x64"
+    }
   ],
   "version": 4
 }

@@ -7,43 +7,67 @@ Player::Player(const std::string & file) : velocityPlayer(5.0f), jumpVelocity(10
     spritePlayer.setTexture(texturePlayer); 
     spritePlayer.setScale(0.5f, 0.5f); 
     spritePlayer.setPosition(playerPosition);   
-
 }
 
 void Player::moveRight() {
 
     playerTextures = animation.playerStates(0);
 
-    for(auto player : playerTextures){
+    statesPlayer.clear();
+ 
+    for (auto& texture : playerTextures) {
+        sf::Sprite sprite;
+        sprite.setTexture(texture);
+        sprite.setScale(0.5f, 0.5f);
+        statesPlayer.push_back(sprite);
+    }
 
-    spritePlayer.setTexture(playerTextures[currentPosition]);
-    currentPosition++; 
-    currentPosition%=(int)playerTextures.size();
+    int frame = currentPosition % statesPlayer.size();
+    spritePlayer = statesPlayer[frame];
     playerPosition.x += velocityPlayer;
     spritePlayer.setPosition(playerPosition);
-    }
+    currentPosition++; 
 }
 
 void Player::moveLeft() {
     
     playerTextures = animation.playerStates(1);
-
-    for(auto player : playerTextures){
-
-    spritePlayer.setTexture(playerTextures[currentPosition]);
-    currentPosition++; 
-    currentPosition%=(int)playerTextures.size();
+  
+    statesPlayer.clear();
+  
+    for (auto& texture : playerTextures) {
+        sf::Sprite sprite;
+        sprite.setTexture(texture);
+        sprite.setScale(0.5f, 0.5f);
+        statesPlayer.push_back(sprite);
+    }
+  
+    int frame = currentPosition % statesPlayer.size();
+    spritePlayer = statesPlayer[frame];
     playerPosition.x -= velocityPlayer;
-    spritePlayer.setPosition(playerPosition);}
+    spritePlayer.setPosition(playerPosition);
+    currentPosition++; 
 }
 
 void Player::jump() {
     if (!isJumping) {
+        
         playerTextures = animation.playerStates(2);
+  
+        statesPlayer.clear();
+       
+        for (auto& texture : playerTextures) {
+            sf::Sprite sprite;
+            sprite.setTexture(texture);
+            sprite.setScale(0.5f, 0.5f);
+            statesPlayer.push_back(sprite);
+        }
+       
+        int frame = currentPosition % statesPlayer.size();
+        spritePlayer = statesPlayer[frame];
         jumpVelocity = -10.0f;
         isJumping = true;
-    }
-   
+    }  
 }
 
 void Player::update(float deltaTime) {
@@ -56,9 +80,7 @@ void Player::update(float deltaTime) {
         jumpVelocity = 0;
         isJumping = false;
     }
-
 }
-
 
 void Player::handleInput(const sf::Event &event, sf::RenderWindow * screen) {
     if (event.type == sf::Event::KeyPressed) {

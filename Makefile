@@ -10,8 +10,8 @@ SOURCES = $(wildcard $(SRCDIR)/*.cpp)
 OBJS = $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
 #You need to add ur own path to the library in lib and include
-DSG_INCLUDE = /home/luis/Escritorio/designar_library/DeSiGNAR-2.0.0/include
-DSG_LIB =  /home/luis/Escritorio/designar_library/DeSiGNAR-2.0.0/lib
+DSG_INCLUDE = /home/jhoseline/DeSiGNAR/include
+DSG_LIB =  /home/jhoseline/DeSiGNAR/lib
 CXX += -I$(DSG_INCLUDE) -L$(DSG_LIB) -lDesignar
 
 all: $(GAME)
