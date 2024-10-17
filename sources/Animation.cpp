@@ -86,6 +86,7 @@ std::vector<sf::Texture> Animation::playerStates(unsigned int movement){
         if (entry.is_regular_file() && entry.path().extension() == ".png") {
             std::string filename = entry.path().filename().string();
             texture = assets.useTexture(internalFolder + "/" + filename);
+
             textures.emplace_back(texture);
         }
     }
@@ -94,3 +95,46 @@ std::vector<sf::Texture> Animation::playerStates(unsigned int movement){
 
     return textures;
 }
+
+std::map<unsigned int, std::vector<sf::Texture>> Animation::textureInventoryCache;
+
+std::vector<sf::Texture> Animation::inventoryStates(unsigned int inventoryResource){
+   
+    if (textureInventoryCache.count(inventoryResource) > 0) {
+
+        return textureCache[inventoryResource];
+    }
+
+    std::vector<sf::Texture> textures;
+    std::string assetsFolder {"assets"}; 
+    std::string internalFolder; 
+    std::string fullPath; 
+    sf::Texture texture;
+
+    switch(inventoryResource){
+        case 0:
+            internalFolder = "/inventory/life"; 
+            break;
+        case 1:
+            internalFolder = "/inventory/can";
+            break;
+
+    }  
+
+    fullPath = assetsFolder + internalFolder;
+
+    for (const auto& entry : std::filesystem::directory_iterator(fullPath)) {
+        if (entry.is_regular_file() && entry.path().extension() == ".png") {
+            std::string filename = entry.path().filename().string();
+            texture = assets.useTexture(internalFolder + "/" + filename);
+
+            textures.emplace_back(texture);
+        
+        }
+    }
+
+    textureCache[inventoryResource] = textures; 
+
+    return textures;
+}
+

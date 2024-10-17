@@ -28,6 +28,10 @@
 #include <NpcPlayer.hpp>
 #endif
 
+#ifndef INVENTORY_HPP
+#include <Inventory.hpp>
+#endif
+
 class Game{
 
 public: 
