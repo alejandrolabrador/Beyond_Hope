@@ -40,5 +40,4 @@ bool isJumping;
 AssetsManager assets; 
 Animation animation; 
 int currentPosition; 
-
 };
