@@ -2,12 +2,10 @@
 
 
 void View::viewCharacter(sf::Sprite * target, sf::Sprite * map) {
-    
     auto && getPosition = target->getPosition();
     sf::Vector2f viewCenter = getPosition;
 
     this->setCenter(viewCenter);
-
     this->updateViewBounds(map);
 }
 

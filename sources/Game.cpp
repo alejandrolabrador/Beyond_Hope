@@ -19,33 +19,34 @@ spriteMap.setTexture(textureMap);
 std::unique_ptr<Player> player = std::make_unique<Player>("/antonio/Frontal/character_frontal.png");  
 std::unique_ptr<NpcPlayer> npcPlayer = std::make_unique<NpcPlayer>("/carolina/character_frontal.png"); 
 
-while (screen.isOpen()) {
+sf::Clock clock; 
 
-
-    
-    sf::Event event;
-    
-    while (screen.pollEvent(event)) {
-
-        if (event.type == sf::Event::KeyPressed) {
-
-
-            if (event.key.code == sf::Keyboard::Escape) {
-                musicGame.stop();
-                Menu menuContinue(screen, Menu::Option::Continue);
-
-            } else {
-                player->handleInput(event, &screen);
+    while (screen.isOpen()) {
+        sf::Event event;
+        while (screen.pollEvent(event)) {
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::Escape) {
+                    musicGame.stop();
+                    Menu menuContinue(screen, Menu::Option::Continue);
+                } else {
+                    player->handleInput(event, &screen);
+                }
             }
         }
-        view.viewCharacter(&spritePlayer, &spriteMap);
-    }
 
-    screen.clear();
-    screen.draw(spriteMap);
-    screen.draw(*npcPlayer); 
-    screen.draw(*player);
-    screen.display();
-}}
+        
+        float deltaTime = clock.restart().asSeconds();
+
+        
+        player->update(deltaTime);
+
+      
+        screen.clear();
+        screen.draw(spriteMap);
+        screen.draw(*npcPlayer);
+        screen.draw(*player);
+        screen.display();
+    }
+}
 
   

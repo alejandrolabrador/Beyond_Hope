@@ -11,7 +11,7 @@ class Animation {
     
     std::vector<sf::Sprite> playerSprites(unsigned int movements);
 
-    
+    std::vector<sf::Texture> inventoryStates(unsigned int quantity); 
     std::vector<sf::Texture> playerStates(unsigned int movement); 
 
     private:
@@ -21,6 +21,8 @@ class Animation {
     sf::Texture texturePlayer; 
     static std::map<unsigned int, std::vector<sf::Texture>> textureCache; 
     static std::map<unsigned int, std::vector<sf::Sprite>> spriteCache;
-};
+    static std::map<unsigned int, std::vector<sf::Texture>> textureInventoryCache; 
+
+};  
 
 #endif  // ANIMATION_HPP
