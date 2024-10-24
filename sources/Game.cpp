@@ -22,6 +22,8 @@ std::unique_ptr<NpcPlayer> npcPlayer = std::make_unique<NpcPlayer>("/carolina/ch
 std::unique_ptr<Inventory> inventory = std::make_unique<Inventory>("/inventory/life/3livesFull.png");
 sf::View originalView = screen.getView();
 
+sf::Clock clock; 
+
 while (screen.isOpen()) {
     
     sf::Event event;
@@ -46,6 +48,9 @@ while (screen.isOpen()) {
     }
     viewMap.viewCharacter(player, &spriteMap, screen.getSize());
     
+    float deltaTime = clock.restart().asSeconds();    
+    player->update(deltaTime);
+
     screen.setView(viewMap.getView()); 
     screen.clear();
     screen.draw(spriteMap);
