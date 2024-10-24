@@ -14,47 +14,40 @@ sf::Sprite spriteMap;
 sf::Sprite spritePlayer; 
 auto && musicGame {asset.playBackgroundMusic("/BeyondHopeMusic.wav", true)};
 
-
 sf::Texture textureMap {asset.useTexture("/maps/firstMap.png")};
 spriteMap.setTexture(textureMap);
 std::unique_ptr<Player> player = std::make_unique<Player>("/antonio/Frontal/character_frontal.png");  
 std::unique_ptr<NpcPlayer> npcPlayer = std::make_unique<NpcPlayer>("/carolina/character_frontal.png"); 
-std::unique_ptr<Inventory> inventory = std::make_unique<Inventory>("/inventory/life/3livesFull.png");
-sf::View originalView = screen.getView();
 
-while (screen.isOpen()) {
-    
-    sf::Event event;
-    
-    while (screen.pollEvent(event)) {
+sf::Clock clock; 
 
-        if (event.type == sf::Event::KeyPressed) {
-
-
-            if (event.key.code == sf::Keyboard::Escape) {
-                musicGame.pause();
-                screen.setView(originalView); 
-                Menu menuContinue(screen, Menu::Option::Continue);
-                musicGame.play(); 
-
-            } else {
-                player->handleInput(event, &screen);
-                
+    while (screen.isOpen()) {
+        sf::Event event;
+        while (screen.pollEvent(event)) {
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::Escape) {
+                    musicGame.stop();
+                    Menu menuContinue(screen, Menu::Option::Continue);
+                } else {
+                    player->handleInput(event, &screen);
+                }
             }
         }
-        
-    }
-    viewMap.viewCharacter(player, &spriteMap, screen.getSize());
-    
-    screen.setView(viewMap.getView()); 
-    screen.clear();
-    screen.draw(spriteMap);
-    screen.draw(*npcPlayer); 
-    screen.draw(*player);
-    screen.draw(*inventory);
-    
-    screen.display();
-    
-}}
 
+        
+        float deltaTime = clock.restart().asSeconds();
+
+        
+        player->update(deltaTime);
+
+      
+        screen.clear();
+        screen.draw(spriteMap);
+        screen.draw(*npcPlayer);
+        screen.draw(*player);
+        screen.display();
+    }
+}
+
+  
   

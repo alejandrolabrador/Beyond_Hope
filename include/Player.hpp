@@ -20,7 +20,6 @@ bool dead();
 void handleInput(const sf::Event &event, sf::RenderWindow * screen); 
 void update(float deltaTime);
 void virtual draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-sf::Vector2f getPosition();
 
 protected:
 
@@ -41,4 +40,5 @@ bool isJumping;
 AssetsManager assets; 
 Animation animation; 
 int currentPosition; 
+int jumpFrame;
 };

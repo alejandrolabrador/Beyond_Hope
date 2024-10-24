@@ -57,8 +57,7 @@ std::map<unsigned int, std::vector<sf::Texture>> Animation::textureCache;
 
 std::vector<sf::Texture> Animation::playerStates(unsigned int movement){
    
-    if (textureCache.count(movement) > 0) {
-
+     if (textureCache.count(movement) > 0) {
         return textureCache[movement];
     }
 
@@ -68,7 +67,7 @@ std::vector<sf::Texture> Animation::playerStates(unsigned int movement){
     std::string fullPath; 
     sf::Texture texture;
 
-    switch(movement){
+    switch(movement) {
         case 0:
             internalFolder = "/antonio/Right"; 
             break;
@@ -78,18 +77,31 @@ std::vector<sf::Texture> Animation::playerStates(unsigned int movement){
         case 2:
             internalFolder = "/antonio/jumpingRight"; 
             break;
+        default:
+            std::cout << "Movimiento no reconocido: " << movement << std::endl;
+            return textures; // Retornar vacío si el movimiento no es válido
     }  
 
     fullPath = assetsFolder + internalFolder;
+
+    
+    int loadedTexturesCount = 0;
 
     for (const auto& entry : std::filesystem::directory_iterator(fullPath)) {
         if (entry.is_regular_file() && entry.path().extension() == ".png") {
             std::string filename = entry.path().filename().string();
             texture = assets.useTexture(internalFolder + "/" + filename);
-
-            textures.emplace_back(texture);
+            if (texture.getSize().x == 0) { 
+                std::cout << "Error al cargar la textura: " << filename << std::endl;
+            } else {
+                textures.emplace_back(texture);
+                loadedTexturesCount++;
+            }
         }
     }
+
+    
+    std::cout << "Texturas cargadas para movimiento " << movement << ": " << loadedTexturesCount << std::endl;
 
     textureCache[movement] = textures; 
 
