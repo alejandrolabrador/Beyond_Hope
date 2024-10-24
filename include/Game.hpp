@@ -13,7 +13,7 @@
 # endif
 
 #ifndef VIEW_HPP
-#include <View.hpp>
+#include <ViewMap.hpp>
 #endif
 
 #ifndef MAPS_HPP
@@ -47,6 +47,6 @@ private:
    Menu menu; 
    sf::RenderWindow window;
    Maps maps; 
-   View view; 
+   ViewMap viewMap; 
    AssetsManager asset; 
 };

@@ -1,6 +1,6 @@
 #include <Inventory.hpp>
 
-Inventory::Inventory(const std::string& file): NpcPlayer(file), livesPosition(0, 0), foodPosition(0, 82){
+Inventory::Inventory(const std::string& file): NpcPlayer(file), livesPosition(0, 82), foodPosition(0, 164){
 
     addItem(items::food, 3);
     addItem(items::medicine, 3);

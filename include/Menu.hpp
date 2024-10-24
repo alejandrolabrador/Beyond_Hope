@@ -7,7 +7,7 @@
 #include <SFML/Window.hpp>
 
 #ifndef VIEW_HPP
-#include <View.hpp>
+#include <ViewMap.hpp>
 #endif
 
 class Menu{

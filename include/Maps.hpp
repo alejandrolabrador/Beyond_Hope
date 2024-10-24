@@ -5,7 +5,7 @@
 #endif
 
 #ifndef VIEW_HPP
-#include <View.hpp>
+#include <ViewMap.hpp>
 #endif
 
 class Maps{

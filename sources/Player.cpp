@@ -27,6 +27,7 @@ void Player::moveRight() {
     playerPosition.x += velocityPlayer;
     spritePlayer.setPosition(playerPosition);
     currentPosition++; 
+
 }
 
 void Player::moveLeft() {
@@ -106,4 +107,9 @@ void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     
     target.draw(spritePlayer, states);
     
+}
+
+sf::Vector2f Player::getPosition(){
+
+    return playerPosition; 
 }
