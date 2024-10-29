@@ -8,13 +8,19 @@
 #include <ViewMap.hpp>
 #endif
 
-class Maps{
+#ifndef ASSETSMANAGER_HPP
+#include <AssetsManager.hpp>
+#endif
 
-    void insertMap(sf::Texture * map, unsigned int priority); 
+class Maps : sf::Drawable{
+
+    void getMap(); 
     
-
     private:
 
+    bool doorOpen; 
+    AssetsManager assets; 
+    unsigned int priority = 0; 
     Designar::RankedTreap<std::pair<sf::Texture*, unsigned int>, std::less<std::pair<sf::Texture*, unsigned int>>> mapTree;
-
+    void virtual draw(sf::RenderTarget& target, sf::RenderStates states) const override; 
 };
