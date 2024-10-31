@@ -44,6 +44,8 @@ class Maps : public sf::Drawable{
     sf::Sprite spriteBlueDoor; 
     sf::Sprite doorRedOpen;
     sf::Sprite doorBlueOpen;  
+    sf::Sprite spriteRedClosed;
+    sf::Sprite spriteBlueClosed; 
     sf::Vector2f redPosition; 
     sf::Vector2f bluePosition; 
     sf::Texture textureBlueDoor; 

@@ -40,16 +40,34 @@ Maps::mapRankedTreap Maps::setMaps (){
 
 void Maps::updateDoor(sf::Vector2f playerPosition){
 
-    if(blueDoorOpen){}
-
-
     if(playerPosition.x > 4394 && playerPosition.x < 4688){
-        blueDoorOpen = true;  
+        
+        if(redDoorOpen){
+
+            textureRedDoor = redDoorTextures[1];
+            spriteRedClosed.setTexture(textureRedDoor);
+            spriteRedClosed.setPosition(redPosition); 
+            spriteRedDoor = spriteRedClosed;   
+            redDoorOpen = false; 
+
+        }
+
+        blueDoorOpen = true; 
     }
     if(playerPosition.x > 4748 && playerPosition.x < 4945){
+        
+        if(blueDoorOpen){
+
+            textureBlueDoor = blueDoorTextures[0];
+            spriteBlueClosed.setTexture(textureBlueDoor);
+            spriteBlueClosed.setPosition(bluePosition); 
+            spriteBlueDoor = spriteBlueClosed;   
+            blueDoorOpen = false; 
+        }
+        
         redDoorOpen = true; 
     }
-    if(blueDoorOpen){
+    if(blueDoorOpen && !redDoorOpen){
 
         textureBlueDoor = blueDoorTextures[1]; 
         doorBlueOpen.setTexture(textureBlueDoor);
@@ -57,7 +75,7 @@ void Maps::updateDoor(sf::Vector2f playerPosition){
         doorBlueOpen.setPosition(bluePosition);
         spriteBlueDoor = doorBlueOpen;   
     }
-    if(redDoorOpen){
+    if(redDoorOpen && !blueDoorOpen){
        
         textureRedDoor = redDoorTextures[0];
         doorRedOpen.setTexture(textureRedDoor);
@@ -65,6 +83,9 @@ void Maps::updateDoor(sf::Vector2f playerPosition){
         doorRedOpen.setPosition(redPosition);
         spriteRedDoor = doorRedOpen; 
    
+    }
+    if(redDoorOpen && blueDoorOpen){
+
     }
 
 }

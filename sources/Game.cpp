@@ -64,8 +64,8 @@ while (screen.isOpen()) {
 
     screen.setView(viewMap.getView()); 
     screen.clear();
-    //screen.draw(spriteMap);
-    screen.draw(*sprite);
+    screen.draw(spriteMap);
+    //screen.draw(*sprite);
     screen.draw(*mapita);
     screen.draw(*npcPlayer); 
     screen.draw(*player);
