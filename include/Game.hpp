@@ -36,6 +36,8 @@ class Game{
 
 public: 
 
+using mapRankedTreap = Designar::RankedTreap<std::pair<sf::Texture *, unsigned int>, std::less<std::pair<sf::Texture *, unsigned int>>> ; 
+
 Game(sf::RenderWindow& window);
 Game(); 
 
@@ -46,7 +48,8 @@ private:
 
    Menu menu; 
    sf::RenderWindow window;
-   Maps maps; 
    ViewMap viewMap; 
    AssetsManager asset; 
+   mapRankedTreap mapTree; 
+   
 };

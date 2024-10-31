@@ -12,15 +12,41 @@
 #include <AssetsManager.hpp>
 #endif
 
-class Maps : sf::Drawable{
+#ifndef ANIMATION_HPP
+#include <Animation.hpp>
+#endif
 
-    void getMap(); 
+class Maps : public sf::Drawable{
+
+    public: 
+
+    using mapRankedTreap = Designar::RankedTreap<std::pair<sf::Texture *, unsigned int>, std::less<std::pair<sf::Texture *, unsigned int>>>;
+
+    Maps(const std::string & file); 
+    mapRankedTreap setMaps(); 
+    void updateLevel(); 
+    void updateDoor(sf::Vector2f doorPosition);
+    void virtual draw(sf::RenderTarget& target, sf::RenderStates states) const override; 
     
     private:
 
-    bool doorOpen; 
+    Animation animation; 
+    std::vector<sf::Texture> blueDoorTextures;
+    std::vector<sf::Texture> redDoorTextures; 
+    bool redDoorOpen = false; 
+    bool blueDoorOpen = false; 
     AssetsManager assets; 
     unsigned int priority = 0; 
+    
     Designar::RankedTreap<std::pair<sf::Texture*, unsigned int>, std::less<std::pair<sf::Texture*, unsigned int>>> mapTree;
-    void virtual draw(sf::RenderTarget& target, sf::RenderStates states) const override; 
+    std::vector<sf::Texture> doorStates; 
+    sf::Sprite spriteRedDoor;
+    sf::Sprite spriteBlueDoor; 
+    sf::Sprite doorRedOpen;
+    sf::Sprite doorBlueOpen;  
+    sf::Vector2f redPosition; 
+    sf::Vector2f bluePosition; 
+    sf::Texture textureBlueDoor; 
+    sf::Texture textureRedDoor; 
+
 };
