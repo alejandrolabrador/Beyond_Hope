@@ -71,7 +71,7 @@ void Player::jump() {
 void Player::update(float deltaTime) {
     
     playerPosition.y += jumpVelocity * deltaTime;
-    jumpVelocity += 100.0f * deltaTime; 
+    jumpVelocity += 200.0f * deltaTime; 
    
     if (playerPosition.y >= 493) { 
         playerPosition.y = 493; 

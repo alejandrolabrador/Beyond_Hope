@@ -14,7 +14,7 @@ spriteBlueDoor.setPosition(bluePosition);
 
 }
 
-Maps::mapRankedTreap Maps::setMaps (){
+std::map<unsigned int, sf::Texture> Maps::setMaps (){
  
     std::string fullPath  { "assets/maps"};
 
@@ -23,10 +23,9 @@ Maps::mapRankedTreap Maps::setMaps (){
         if (entry.is_regular_file() && entry.path().extension() == ".png") {
             std::string filename = entry.path().filename().string();
 
-            std::unique_ptr<sf::Texture> map = std::make_unique<sf::Texture>(assets.useTexture("/maps/" + filename));
-            std::pair<sf::Texture*, unsigned int> pair(map.get(), priority);
+            sf::Texture map = assets.useTexture("/maps/" + filename);
 
-            mapTree.insert(pair);
+            mapTree.emplace(priority, map); 
             std::cout << filename; 
             
         }
@@ -40,7 +39,7 @@ Maps::mapRankedTreap Maps::setMaps (){
 
 void Maps::updateDoor(sf::Vector2f playerPosition){
 
-    if(playerPosition.x > 4394 && playerPosition.x < 4688){
+    if(playerPosition.x > bluePosition.x && playerPosition.x < bluePosition.x + 250){
         
         if(redDoorOpen){
 
@@ -54,7 +53,7 @@ void Maps::updateDoor(sf::Vector2f playerPosition){
 
         blueDoorOpen = true; 
     }
-    if(playerPosition.x > 4748 && playerPosition.x < 4945){
+    if(playerPosition.x > redPosition.x && playerPosition.x < redPosition.x + 250){
         
         if(blueDoorOpen){
 

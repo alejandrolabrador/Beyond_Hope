@@ -24,7 +24,9 @@ void ViewMap::updateViewBounds(sf::Sprite * map, sf::Vector2u sizeView) {
     view.setCenter(view.getCenter().x, viewCenterY);
 
     if (viewRect.left < mapRect.left) {
+        
         view.setCenter(mapRect.left + view.getSize().x / 2, view.getCenter().y);
+
     } else if (viewRect.left + viewRect.width > mapRect.left + mapRect.width) {
         view.setCenter(mapRect.left + mapRect.width - view.getSize().x / 2, view.getCenter().y);
     }

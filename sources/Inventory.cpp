@@ -59,6 +59,11 @@ int Inventory::getItemQuantity(items item) const{
 
 }
 
+void Inventory::updateInventoryView(int position){
+
+    livesPosition.x+= position; 
+}
+
 void Inventory::updateSprite(items item){
 
 amountInventory = { getItemQuantity(item)};

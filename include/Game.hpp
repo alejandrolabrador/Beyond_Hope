@@ -50,6 +50,8 @@ private:
    sf::RenderWindow window;
    ViewMap viewMap; 
    AssetsManager asset; 
-   mapRankedTreap mapTree; 
+   std::map<unsigned int, sf::Texture> mapTree; 
+   sf::Sprite spriteMap;
+   sf::Sprite spritePlayer; 
    
 };

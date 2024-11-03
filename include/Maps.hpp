@@ -20,10 +20,10 @@ class Maps : public sf::Drawable{
 
     public: 
 
-    using mapRankedTreap = Designar::RankedTreap<std::pair<sf::Texture *, unsigned int>, std::less<std::pair<sf::Texture *, unsigned int>>>;
+    //using mapRankedTreap = Designar::RankedTreap<std::pair<sf::Texture *, unsigned int>, std::less<std::pair<sf::Texture *, unsigned int>>>;
 
     Maps(const std::string & file); 
-    mapRankedTreap setMaps(); 
+    std::map<unsigned int, sf::Texture> setMaps(); 
     void updateLevel(); 
     void updateDoor(sf::Vector2f doorPosition);
     void virtual draw(sf::RenderTarget& target, sf::RenderStates states) const override; 
@@ -37,8 +37,7 @@ class Maps : public sf::Drawable{
     bool blueDoorOpen = false; 
     AssetsManager assets; 
     unsigned int priority = 0; 
-    
-    Designar::RankedTreap<std::pair<sf::Texture*, unsigned int>, std::less<std::pair<sf::Texture*, unsigned int>>> mapTree;
+    std::map<unsigned int, sf::Texture> mapTree;
     std::vector<sf::Texture> doorStates; 
     sf::Sprite spriteRedDoor;
     sf::Sprite spriteBlueDoor; 

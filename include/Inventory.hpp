@@ -23,12 +23,14 @@ medicine,
 
 public:
 
+
 Inventory(const std::string& file);
 
 void addItem(items item, int quantity);
 void quitItem(items item, int quantity);
 int getItemQuantity(items item) const;
 void updateSprite(items item);
+void updateInventoryView(int position);
 
 std::vector<items> getItems()const;
 

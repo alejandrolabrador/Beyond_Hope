@@ -6,6 +6,10 @@
 #include <Player.hpp>
 #endif
 
+#ifndef INVENTORY_HPP
+#include <Inventory.hpp>
+#endif
+
 //Throughout this class we will set target wiew for our main character.
 class ViewMap: sf::View{
 
@@ -17,6 +21,7 @@ sf::View getView() const;
 
 private:
 
+//Inventory inventory;
 sf::View view;  
 
 };
