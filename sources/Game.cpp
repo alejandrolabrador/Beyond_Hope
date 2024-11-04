@@ -11,15 +11,13 @@ start(window);
 void Game::start(sf::RenderWindow & screen){
 
 auto && musicGame {asset.playBackgroundMusic("/BeyondHopeMusic.wav", true)};
-//sf::Texture textureMap {asset.useTexture("/maps/firstMap.png")};
-//spriteMap.setTexture(textureMap);
 std::unique_ptr<Player> player = std::make_unique<Player>("/antonio/Frontal/character_frontal.png");  
 std::unique_ptr<NpcPlayer> npcPlayer = std::make_unique<NpcPlayer>("/carolina/character_frontal.png"); 
 std::unique_ptr<Inventory> inventory = std::make_unique<Inventory>("/inventory/life/3livesFull.png");
 std::unique_ptr<Maps> map = std::make_unique<Maps>("/doors/blueDoor.png");
 sf::View originalView = screen.getView();
 mapTree = map->setMaps();
-sf::Texture currentMap = mapTree[1];
+sf::Texture currentMap = mapTree[currentLevel];
 spriteMap.setTexture(currentMap);
 
 sf::Clock clock; 
@@ -45,6 +43,9 @@ while (screen.isOpen()) {
             }
             if(event.key.code == sf::Keyboard::K){
                 
+                auto nextLevel = map->updateLevel(currentLevel, player->getPosition()); 
+                currentMap = mapTree[nextLevel];
+                spriteMap.setTexture(currentMap);
             }
             
             else {
@@ -55,10 +56,10 @@ while (screen.isOpen()) {
         
     }
     viewMap.viewCharacter(player, &spriteMap, screen.getSize());
-    
+    inventory->updateInventoryView(viewMap.getView().getCenter(), window.getSize()); 
     float deltaTime = clock.restart().asSeconds();    
     player->update(deltaTime);
-
+    
     screen.setView(viewMap.getView()); 
     screen.clear();
     screen.draw(spriteMap);

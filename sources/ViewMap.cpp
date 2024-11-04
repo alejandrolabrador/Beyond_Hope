@@ -5,7 +5,6 @@ void ViewMap::viewCharacter(std::unique_ptr<Player>& target, sf::Sprite * map, s
     
     auto && getPosition = target->getPosition(); 
     sf::Vector2f viewCenter = getPosition;
-
     view.setCenter(viewCenter);
 
     this->updateViewBounds(map, size);
@@ -23,8 +22,7 @@ void ViewMap::updateViewBounds(sf::Sprite * map, sf::Vector2u sizeView) {
     float viewCenterY = std::min(maxYPosition, mapRect.top + (mapRect.height - 70) - view.getSize().y / 2);
     view.setCenter(view.getCenter().x, viewCenterY);
 
-    if (viewRect.left < mapRect.left) {
-        
+    if (viewRect.left < mapRect.left) { 
         view.setCenter(mapRect.left + view.getSize().x / 2, view.getCenter().y);
 
     } else if (viewRect.left + viewRect.width > mapRect.left + mapRect.width) {
@@ -33,12 +31,14 @@ void ViewMap::updateViewBounds(sf::Sprite * map, sf::Vector2u sizeView) {
 
     if (viewRect.top < mapRect.top) {
         view.setCenter(view.getCenter().x, mapRect.top + view.getSize().y / 2);
+
     } else if (viewRect.top + viewRect.height > mapRect.top + mapRect.height - 70) {
         view.setCenter(view.getCenter().x, mapRect.top + mapRect.height - 70 - view.getSize().y / 2);
     }
 }
 
 sf::View ViewMap::getView() const {
+    
     
     return view; 
 }

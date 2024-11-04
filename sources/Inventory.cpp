@@ -1,6 +1,6 @@
 #include <Inventory.hpp>
 
-Inventory::Inventory(const std::string& file): NpcPlayer(file), livesPosition(0, 82), foodPosition(0, 164){
+Inventory::Inventory(const std::string& file): livesPosition(0, 82), foodPosition(0, 164){
 
     addItem(items::food, 3);
     addItem(items::medicine, 3);
@@ -13,13 +13,6 @@ Inventory::Inventory(const std::string& file): NpcPlayer(file), livesPosition(0,
     spritesFood.setPosition(foodPosition); 
     spritesLives.setPosition(livesPosition); 
 }
-
-void Inventory::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-
-    target.draw(spritesLives, states);
-    target.draw(spritesFood, states);
-}
-
 
 void Inventory::addItem(items item, int quantity) {
         
@@ -59,9 +52,18 @@ int Inventory::getItemQuantity(items item) const{
 
 }
 
-void Inventory::updateInventoryView(int position){
+void Inventory::updateInventoryView(sf::Vector2f view, sf::Vector2u window){
 
-    livesPosition.x+= position; 
+
+sf::Vector2f viewOffset = view - sf::Vector2f(window.x / 2, window.y / 2);
+spritesFood.setPosition(10.f - viewOffset.x, foodPosition.y); // Ajusta según la posición deseada
+spritesLives.setPosition(10.f - viewOffset.x, livesPosition.y);
+   
+    //livesPosition.x+= position; 
+    //foodPosition.x+= position; 
+    //spritesLives.setPosition(livesPosition);
+    //spritesFood.setPosition(foodPosition); 
+
 }
 
 void Inventory::updateSprite(items item){
@@ -80,4 +82,10 @@ else{
         spritesFood.setTexture(inventoryTextures[amountInventory]);
         spritesFood.setPosition(foodPosition);
 }
+}
+
+void Inventory::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+
+    target.draw(spritesLives, states);
+    target.draw(spritesFood, states);
 }

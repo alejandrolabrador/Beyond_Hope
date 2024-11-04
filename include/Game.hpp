@@ -51,6 +51,7 @@ private:
    ViewMap viewMap; 
    AssetsManager asset; 
    std::map<unsigned int, sf::Texture> mapTree; 
+   unsigned currentLevel = 0; 
    sf::Sprite spriteMap;
    sf::Sprite spritePlayer; 
    

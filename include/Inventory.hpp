@@ -4,15 +4,11 @@
 #include <AssetsManager.hpp>
 #endif
 
-#ifndef NPC_PLAYER_HPP
-#include <NpcPlayer.hpp>
-#endif
-
 #ifndef ANIMATION_HPP
 #include <Animation.hpp>
 #endif
 
-class Inventory: public NpcPlayer  {
+class Inventory: public sf::Drawable {
 
 enum class items{
 
@@ -23,16 +19,16 @@ medicine,
 
 public:
 
-
+Inventory(){}; 
 Inventory(const std::string& file);
 
 void addItem(items item, int quantity);
 void quitItem(items item, int quantity);
 int getItemQuantity(items item) const;
 void updateSprite(items item);
-void updateInventoryView(int position);
-
+void updateInventoryView(sf::Vector2f view, sf::Vector2u window);
 std::vector<items> getItems()const;
+void virtual draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 private:
 
@@ -47,7 +43,6 @@ sf::Vector2f foodPosition;
 int amountInventory;
 std::vector<sf::Texture> inventoryTextures; 
 std::vector<std::tuple<items, int>> quantityItems;
-void virtual draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 }; 
 

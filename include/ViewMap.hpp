@@ -21,7 +21,7 @@ sf::View getView() const;
 
 private:
 
-//Inventory inventory;
+Inventory inventory;
 sf::View view;  
 
 };

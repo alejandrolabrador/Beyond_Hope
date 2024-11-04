@@ -18,7 +18,7 @@ std::map<unsigned int, sf::Texture> Maps::setMaps (){
  
     std::string fullPath  { "assets/maps"};
 
-        for (const auto& entry : std::filesystem::directory_iterator(fullPath)) {
+        /*for (const auto& entry : std::filesystem::directory_iterator(fullPath)) {
         
         if (entry.is_regular_file() && entry.path().extension() == ".png") {
             std::string filename = entry.path().filename().string();
@@ -33,13 +33,32 @@ std::map<unsigned int, sf::Texture> Maps::setMaps (){
 
     }
     
-    return mapTree; 
- 
+    return mapTree; */
+
+    std::vector<std::string> filenames;
+
+for (const auto& entry : std::filesystem::directory_iterator(fullPath)) {
+    if (entry.is_regular_file() && entry.path().extension() == ".png") {
+        filenames.push_back(entry.path().filename().string());
+    }
+}
+
+// Ordena los nombres de archivo
+std::sort(filenames.begin(), filenames.end());
+
+// Inserta en el map
+for (const auto& filename : filenames) {
+    sf::Texture map = assets.useTexture("/maps/" + filename);
+    mapTree.emplace(priority, map);
+    std::cout << filename;
+    ++priority;
+}
+   return mapTree; 
 }
 
 void Maps::updateDoor(sf::Vector2f playerPosition){
 
-    if(playerPosition.x > bluePosition.x && playerPosition.x < bluePosition.x + 250){
+    if(playerPosition.x >= bluePosition.x && playerPosition.x < bluePosition.x + 250){
         
         if(redDoorOpen){
 
@@ -53,7 +72,7 @@ void Maps::updateDoor(sf::Vector2f playerPosition){
 
         blueDoorOpen = true; 
     }
-    if(playerPosition.x > redPosition.x && playerPosition.x < redPosition.x + 250){
+    if(playerPosition.x >= redPosition.x && playerPosition.x < redPosition.x + 250){
         
         if(blueDoorOpen){
 
@@ -88,8 +107,24 @@ void Maps::updateDoor(sf::Vector2f playerPosition){
     }
 
 }
-void Maps::updateLevel(){
+unsigned int Maps::updateLevel(unsigned int map, sf::Vector2f playerPosition){
 
+    if(blueDoorOpen && playerPosition.x >= bluePosition.x && playerPosition.x < bluePosition.x + 250){
+        map++;
+
+        return map; 
+        
+    }
+    if(redDoorOpen && playerPosition.x >= redPosition.x && playerPosition.x < redPosition.x){
+       map++; 
+       switch(map){
+       
+       case 1:
+       return 2;
+       case 2:
+       return 1; 
+       }
+    }
 }
 
 void Maps::draw(sf::RenderTarget& target, sf::RenderStates states) const{
