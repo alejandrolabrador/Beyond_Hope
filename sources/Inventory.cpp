@@ -52,17 +52,12 @@ int Inventory::getItemQuantity(items item) const{
 
 }
 
-void Inventory::updateInventoryView(sf::Vector2f view, sf::Vector2u window){
+void Inventory::updateInventoryView(sf::Vector2f view){
 
+sf::Vector2f viewOffset = view; 
 
-sf::Vector2f viewOffset = view - sf::Vector2f(window.x / 2, window.y / 2);
-spritesFood.setPosition(10.f - viewOffset.x, foodPosition.y); // Ajusta según la posición deseada
-spritesLives.setPosition(10.f - viewOffset.x, livesPosition.y);
-   
-    //livesPosition.x+= position; 
-    //foodPosition.x+= position; 
-    //spritesLives.setPosition(livesPosition);
-    //spritesFood.setPosition(foodPosition); 
+spritesFood.setPosition(10.f + viewOffset.x, viewOffset.y); 
+spritesLives.setPosition(10.f + viewOffset.x, viewOffset.y);
 
 }
 

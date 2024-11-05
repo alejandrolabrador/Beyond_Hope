@@ -26,7 +26,7 @@ void addItem(items item, int quantity);
 void quitItem(items item, int quantity);
 int getItemQuantity(items item) const;
 void updateSprite(items item);
-void updateInventoryView(sf::Vector2f view, sf::Vector2u window);
+void updateInventoryView(sf::Vector2f view);
 std::vector<items> getItems()const;
 void virtual draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

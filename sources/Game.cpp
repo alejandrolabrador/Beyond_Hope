@@ -56,7 +56,7 @@ while (screen.isOpen()) {
         
     }
     viewMap.viewCharacter(player, &spriteMap, screen.getSize());
-    inventory->updateInventoryView(viewMap.getView().getCenter(), window.getSize()); 
+    inventory->updateInventoryView(viewMap.getView().getCenter()); 
     float deltaTime = clock.restart().asSeconds();    
     player->update(deltaTime);
     
