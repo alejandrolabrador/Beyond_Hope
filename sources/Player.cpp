@@ -54,6 +54,10 @@ void Player::jump() {
         currentPosition = 0; 
         jumpFrame = 0;
         playerTextures = animation.playerStates(2); 
+<<<<<<< HEAD
+=======
+        std::cout << "Jump textures count: " << playerTextures.size() << std::endl; 
+>>>>>>> e536396df1e66e0ec772c3430488c8ccdffb4591
         statesPlayer.clear();
 
         for (auto& texture : playerTextures) {
@@ -71,7 +75,11 @@ void Player::jump() {
 void Player::update(float deltaTime) {
     
     playerPosition.y += jumpVelocity * deltaTime;
+<<<<<<< HEAD
     jumpVelocity += 200.0f * deltaTime; 
+=======
+    jumpVelocity += 100.0f * deltaTime; 
+>>>>>>> e536396df1e66e0ec772c3430488c8ccdffb4591
    
     if (playerPosition.y >= 493) { 
         playerPosition.y = 493; 
@@ -126,6 +134,7 @@ void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(spritePlayer, states);
     
 }
+<<<<<<< HEAD
 
 sf::Vector2f Player::getPosition(){
 
@@ -134,5 +143,8 @@ sf::Vector2f Player::getPosition(){
 
 void Player::updateSpritePosition(){
     
+=======
+void Player::updateSpritePosition(){
+>>>>>>> e536396df1e66e0ec772c3430488c8ccdffb4591
     spritePlayer.setPosition(playerPosition);
 }

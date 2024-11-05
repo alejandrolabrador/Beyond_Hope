@@ -47,9 +47,14 @@ std::map<unsigned int, std::vector<sf::Texture>> Animation::textureInventoryCach
 
 std::vector<sf::Texture> Animation::inventoryStates(unsigned int inventoryResource){
    
+<<<<<<< HEAD
     if (textureInventoryCache.count(inventoryResource) > 0) {
 
         return textureInventoryCache[inventoryResource];
+=======
+     if (textureCache.count(movement) > 0) {
+        return textureCache[movement];
+>>>>>>> e536396df1e66e0ec772c3430488c8ccdffb4591
     }
 
     std::vector<sf::Texture> textures;
@@ -58,22 +63,36 @@ std::vector<sf::Texture> Animation::inventoryStates(unsigned int inventoryResour
     std::string fullPath; 
     sf::Texture texture;
 
+<<<<<<< HEAD
     switch(inventoryResource){
+=======
+    switch(movement) {
+>>>>>>> e536396df1e66e0ec772c3430488c8ccdffb4591
         case 0:
             internalFolder = "/inventory/life"; 
             break;
         case 1:
             internalFolder = "/inventory/can";
             break;
+<<<<<<< HEAD
 
+=======
+        default:
+            std::cout << "Movimiento no reconocido: " << movement << std::endl;
+            return textures; // Retornar vacío si el movimiento no es válido
+>>>>>>> e536396df1e66e0ec772c3430488c8ccdffb4591
     }  
 
     fullPath = assetsFolder + internalFolder;
+
+    
+    int loadedTexturesCount = 0;
 
     for (const auto& entry : std::filesystem::directory_iterator(fullPath)) {
         if (entry.is_regular_file() && entry.path().extension() == ".png") {
             std::string filename = entry.path().filename().string();
             texture = assets.useTexture(internalFolder + "/" + filename);
+<<<<<<< HEAD
 
             textures.emplace_back(texture);
         
@@ -81,6 +100,21 @@ std::vector<sf::Texture> Animation::inventoryStates(unsigned int inventoryResour
     }
 
     textureInventoryCache[inventoryResource] = textures; 
+=======
+            if (texture.getSize().x == 0) { 
+                std::cout << "Error al cargar la textura: " << filename << std::endl;
+            } else {
+                textures.emplace_back(texture);
+                loadedTexturesCount++;
+            }
+        }
+    }
+
+    
+    std::cout << "Texturas cargadas para movimiento " << movement << ": " << loadedTexturesCount << std::endl;
+
+    textureCache[movement] = textures; 
+>>>>>>> e536396df1e66e0ec772c3430488c8ccdffb4591
 
     return textures;
 }
