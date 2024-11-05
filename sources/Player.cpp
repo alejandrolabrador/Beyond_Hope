@@ -121,11 +121,9 @@ void Player::handleInput(const sf::Event &event, sf::RenderWindow * screen) {
         moveLeft(); 
     }
 }
-
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     
     target.draw(spritePlayer, states);
-    
 }
 void Player::updateSpritePosition(){
     spritePlayer.setPosition(playerPosition);
