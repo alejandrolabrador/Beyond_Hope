@@ -12,7 +12,7 @@ void Game::start(sf::RenderWindow & screen){
 
 auto && musicGame {asset.playBackgroundMusic("/BeyondHopeMusic.wav", true)};
 std::unique_ptr<Player> player = std::make_unique<Player>("/antonio/Frontal/character_frontal.png");  
-std::unique_ptr<NpcPlayer> npcPlayer = std::make_unique<NpcPlayer>("/carolina/character_frontal.png"); 
+std::unique_ptr<NpcPlayer> npcPlayer = std::make_unique<NpcPlayer>("/carolina/Frontal/character_frontal.png"); 
 std::unique_ptr<Inventory> inventory = std::make_unique<Inventory>("/inventory/life/3livesFull.png");
 std::unique_ptr<Maps> map = std::make_unique<Maps>("/doors/blueDoor.png");
 sf::View originalView = screen.getView();
@@ -50,7 +50,7 @@ while (screen.isOpen()) {
             
             else {
                 player->handleInput(event, &screen);
-                
+                npcPlayer->handleInput(event, &screen);
             }
         }
         
@@ -59,7 +59,7 @@ while (screen.isOpen()) {
     inventory->updateInventoryView(viewMap.getView().getCenter()); 
     float deltaTime = clock.restart().asSeconds();    
     player->update(deltaTime);
-    
+    npcPlayer->update(deltaTime);
     screen.setView(viewMap.getView()); 
     screen.clear();
     screen.draw(spriteMap);

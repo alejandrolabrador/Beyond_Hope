@@ -43,6 +43,48 @@ std::vector<sf::Texture> Animation::playerStates(unsigned int movement){
 
     return textures;
 }
+std::map<unsigned int, std::vector<sf::Texture>> Animation::textureNpcCache; //
+
+std::vector<sf::Texture> Animation::NpcStates(unsigned int movement) {
+    if (textureNpcCache.count(movement) > 0) {
+        return textureNpcCache[movement];
+    }
+
+    std::vector<sf::Texture> textures;
+    std::string assetsFolder {"assets"}; 
+    std::string internalFolder; 
+    std::string fullPath; 
+    sf::Texture texture;
+
+    switch(movement) {
+        case 0:
+            internalFolder = "/carolina/Right"; 
+            break;
+        case 1:
+            internalFolder = "/carolina/Left";
+            break;
+        case 2:
+            internalFolder = "/carolina/jumpingRight"; 
+            break;
+        case 3:
+            internalFolder = "/carolina/jumpingLeft"; 
+            break;
+    }  
+
+    fullPath = assetsFolder + internalFolder;
+
+    std::vector<std::string> filenames;
+    filenames = sortFrames(fullPath);
+
+    for (const auto& filename : filenames) {
+        texture = assets.useTexture(internalFolder + "/" + filename);
+        textures.emplace_back(texture);
+    }
+
+    textureNpcCache[movement] = textures; 
+
+    return textures;
+} //
 
 std::map<unsigned int, std::vector<sf::Texture>> Animation::textureInventoryCache;
 
