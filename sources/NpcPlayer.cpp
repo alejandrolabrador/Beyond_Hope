@@ -8,7 +8,4 @@ NpcPlayer::NpcPlayer(const std::string & file) : Player(file), playerPosition(40
     spritePlayer.setPosition(playerPosition);  
 }
 
-void NpcPlayer::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
-    target.draw(spritePlayer, states);
-}
