@@ -169,9 +169,9 @@ sf::Texture texture;
         textures.emplace_back(texture);
 }
 
-textureNpcCache[movement] = textures; 
-
-return textures;
+    textureNpcCache[movement] = textures; 
+    return textures;
+    
 } 
 std::vector<std::string> Animation::sortFrames(std::string fullPath) {
 

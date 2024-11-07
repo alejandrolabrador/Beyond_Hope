@@ -56,6 +56,7 @@ while (screen.isOpen()) {
             
             else {
                 player->handleInput(event, &screen);
+                npcPlayer->handleInput(event, &screen);
                 
             }
         }
