@@ -46,8 +46,9 @@ while (screen.isOpen()) {
                 auto nextLevel = map->updateLevel(currentLevel, player->getPosition()); 
                 
                 if(nextLevel != 0){
+                    npcPlayer->NpcPlayerPosition = npcPlayer->setOriginalPosition(); 
                     player->playerPosition = player->setOriginalPosition(); 
-
+                     
                 }
                 currentLevel+= nextLevel; 
                 currentMap = mapTree[currentLevel];
@@ -66,6 +67,7 @@ while (screen.isOpen()) {
     inventory->updateInventoryView(viewMap.getView().getCenter(), originalView.getCenter()); 
     float deltaTime = clock.restart().asSeconds();    
     player->update(deltaTime);
+    npcPlayer->update(deltaTime);
     
     screen.setView(viewMap.getView()); 
     screen.clear();

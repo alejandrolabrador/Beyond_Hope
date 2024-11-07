@@ -146,7 +146,6 @@ void Player::handleInput(const sf::Event &event, sf::RenderWindow * screen) {
 
 sf::Vector2f Player::setOriginalPosition(){
 
-   
     return sf::Vector2f(231, 493);
 }
 

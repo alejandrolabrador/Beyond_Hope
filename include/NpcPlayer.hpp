@@ -6,12 +6,15 @@
 
 class NpcPlayer : public Player {
 public: 
+
     NpcPlayer(const std::string &file);
     void updateStatus();
     bool dead();
     void update(float deltaTime);  
     void handleInput(const sf::Event &event, sf::RenderWindow * screen);  
     void virtual draw(sf::RenderTarget& target, sf::RenderStates states) const override; 
+    sf::Vector2f setOriginalPosition();
+    sf::Vector2f NpcPlayerPosition; 
 
 protected:
     
@@ -20,7 +23,7 @@ protected:
     void jump();
     void jumpRight();
     void jumpLeft();
-    sf::Vector2f NpcPlayerPosition; 
+    
     void updateSpritePosition();
     float velocityNpcPlayer; 
     float jumpVelocity;

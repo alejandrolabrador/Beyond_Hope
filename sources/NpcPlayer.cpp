@@ -45,7 +45,7 @@ void NpcPlayer::moveLeft() {
 }
 
 void NpcPlayer::jump() {
-    currentPosition = 0; 
+  /*  currentPosition = 0; 
     jumpFrame = 0;
     NpcPlayerTextures = animation.npcStates(2); 
     statesPlayer.clear();
@@ -57,12 +57,12 @@ void NpcPlayer::jump() {
         statesNpcPlayer.push_back(sprite);
     }      
     jumpVelocity = -100.0f; 
-    isJumping = true; 
+    isJumping = true; */
 }
 
 void NpcPlayer::jumpRight() {
     
-    currentPosition = 0; 
+    /*currentPosition = 0; 
     jumpFrame = 0;
     NpcPlayerTextures = animation.npcStates(2); 
     statesNpcPlayer.clear();
@@ -75,7 +75,7 @@ void NpcPlayer::jumpRight() {
     }      
     jumpVelocity = -100.0f; 
     NpcPlayerPosition.x += velocityNpcPlayer; 
-    isJumping = true; 
+    isJumping = true;*/ 
 }
 
 void NpcPlayer::jumpLeft() {
@@ -127,7 +127,7 @@ void NpcPlayer::handleInput(const sf::Event &event, sf::RenderWindow *screen) {
         }
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+   /* if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
         if (!isJumping) {
             jump(); 
         }
@@ -137,7 +137,7 @@ void NpcPlayer::handleInput(const sf::Event &event, sf::RenderWindow *screen) {
             jump(); 
         }
         moveLeft(); 
-    }
+    }*/
 }
 
 void NpcPlayer::draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -146,4 +146,9 @@ void NpcPlayer::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 void NpcPlayer::updateSpritePosition() {
     spriteNpcPlayer.setPosition(NpcPlayerPosition);
+}
+
+sf::Vector2f NpcPlayer::setOriginalPosition(){
+    
+    return sf::Vector2f(40, 493); 
 }
