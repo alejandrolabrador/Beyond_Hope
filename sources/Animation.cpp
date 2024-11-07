@@ -25,6 +25,8 @@ std::vector<sf::Texture> Animation::playerStates(unsigned int movement){
         case 2:
             internalFolder = "/antonio/jumpingRight"; 
             break;
+        case 3:
+            internalFolder = "/antonio/jumpingLeft";
     }  
 
     fullPath = assetsFolder + internalFolder;

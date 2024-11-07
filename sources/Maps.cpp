@@ -39,7 +39,7 @@ for (const auto& filename : filenames) {
 
 void Maps::updateDoor(sf::Vector2f playerPosition){
 
-    if(playerPosition.x >= bluePosition.x && playerPosition.x < bluePosition.x + 250){
+    if(playerPosition.x >= bluePosition.x - 113.5 && playerPosition.x < bluePosition.x + 113.5){
         
         if(redDoorOpen){
 
@@ -53,7 +53,7 @@ void Maps::updateDoor(sf::Vector2f playerPosition){
 
         blueDoorOpen = true; 
     }
-    if(playerPosition.x >= redPosition.x && playerPosition.x < redPosition.x + 250){
+    if(playerPosition.x >= redPosition.x - 113.5 && playerPosition.x < redPosition.x + 113.5){
         
         if(blueDoorOpen){
 
@@ -85,12 +85,14 @@ void Maps::updateDoor(sf::Vector2f playerPosition){
     }
 
 }
-unsigned int Maps::updateLevel(unsigned int map, sf::Vector2f playerPosition){
+int Maps::updateLevel(unsigned int map, sf::Vector2f playerPosition){
 
     if(blueDoorOpen && playerPosition.x >= bluePosition.x && playerPosition.x < bluePosition.x + 250){
 
-        return map + 1; 
-        
+        if (map >= 3){
+            return 0; 
+        }
+        return 1; 
     }
 
     if(redDoorOpen && playerPosition.x >= redPosition.x && playerPosition.x < redPosition.x + 250){
@@ -98,12 +100,15 @@ unsigned int Maps::updateLevel(unsigned int map, sf::Vector2f playerPosition){
        switch(map){
        
        case 0:
-       return map + 1;
+       return 2;
+       case 1:
+       return 1; 
        case 2:
-       return map; 
+       return 1; 
+       default:
+       return 0;
        }
     }
-    std::cout << map; 
     return map;
 }
 
