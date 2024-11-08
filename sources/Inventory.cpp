@@ -52,12 +52,12 @@ int Inventory::getItemQuantity(items item) const{
 
 }
 
-void Inventory::updateInventoryView(sf::Vector2f view){
+void Inventory::updateInventoryView(sf::Vector2f view, sf::Vector2f originalView){
 
 sf::Vector2f viewOffset = view; 
 
-spritesFood.setPosition(10.f + viewOffset.x, viewOffset.y); 
-spritesLives.setPosition(10.f + viewOffset.x, viewOffset.y);
+spritesFood.setPosition(viewOffset.x - originalView.x, foodPosition.y);
+spritesLives.setPosition(viewOffset.x - originalView.x, livesPosition.y);
 
 }
 

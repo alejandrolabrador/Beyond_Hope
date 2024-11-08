@@ -25,17 +25,20 @@ std::vector<sf::Texture> Animation::playerStates(unsigned int movement){
         case 2:
             internalFolder = "/antonio/jumpingRight"; 
             break;
+        case 3:
+            internalFolder = "/antonio/jumpingLeft";
     }  
 
     fullPath = assetsFolder + internalFolder;
+      
+    std::vector<std::string> filenames;
+    filenames = sortFrames(fullPath);
+    
 
-    for (const auto& entry : std::filesystem::directory_iterator(fullPath)) {
-        if (entry.is_regular_file() && entry.path().extension() == ".png") {
-            std::string filename = entry.path().filename().string();
-            texture = assets.useTexture(internalFolder + "/" + filename);
+    for (const auto& filename : filenames) {
 
-            textures.emplace_back(texture);
-        }
+        texture = assets.useTexture(internalFolder + "/" + filename);
+        textures.emplace_back(texture);
     }
 
     textureCache[movement] = textures; 
@@ -47,14 +50,9 @@ std::map<unsigned int, std::vector<sf::Texture>> Animation::textureInventoryCach
 
 std::vector<sf::Texture> Animation::inventoryStates(unsigned int inventoryResource){
    
-<<<<<<< HEAD
     if (textureInventoryCache.count(inventoryResource) > 0) {
 
         return textureInventoryCache[inventoryResource];
-=======
-     if (textureCache.count(movement) > 0) {
-        return textureCache[movement];
->>>>>>> e536396df1e66e0ec772c3430488c8ccdffb4591
     }
 
     std::vector<sf::Texture> textures;
@@ -63,58 +61,29 @@ std::vector<sf::Texture> Animation::inventoryStates(unsigned int inventoryResour
     std::string fullPath; 
     sf::Texture texture;
 
-<<<<<<< HEAD
     switch(inventoryResource){
-=======
-    switch(movement) {
->>>>>>> e536396df1e66e0ec772c3430488c8ccdffb4591
         case 0:
             internalFolder = "/inventory/life"; 
             break;
         case 1:
             internalFolder = "/inventory/can";
             break;
-<<<<<<< HEAD
 
-=======
-        default:
-            std::cout << "Movimiento no reconocido: " << movement << std::endl;
-            return textures; // Retornar vacío si el movimiento no es válido
->>>>>>> e536396df1e66e0ec772c3430488c8ccdffb4591
     }  
 
     fullPath = assetsFolder + internalFolder;
 
+    std::vector<std::string> filenames;
+    filenames = sortFrames(fullPath);
     
-    int loadedTexturesCount = 0;
 
-    for (const auto& entry : std::filesystem::directory_iterator(fullPath)) {
-        if (entry.is_regular_file() && entry.path().extension() == ".png") {
-            std::string filename = entry.path().filename().string();
+    for (const auto& filename : filenames) {
+
             texture = assets.useTexture(internalFolder + "/" + filename);
-<<<<<<< HEAD
-
             textures.emplace_back(texture);
-        
-        }
     }
 
     textureInventoryCache[inventoryResource] = textures; 
-=======
-            if (texture.getSize().x == 0) { 
-                std::cout << "Error al cargar la textura: " << filename << std::endl;
-            } else {
-                textures.emplace_back(texture);
-                loadedTexturesCount++;
-            }
-        }
-    }
-
-    
-    std::cout << "Texturas cargadas para movimiento " << movement << ": " << loadedTexturesCount << std::endl;
-
-    textureCache[movement] = textures; 
->>>>>>> e536396df1e66e0ec772c3430488c8ccdffb4591
 
     return textures;
 }
@@ -145,21 +114,75 @@ std::vector<sf::Texture> Animation::doorStates(unsigned int color){
 
     fullPath = assetsFolder + internalFolder;
     
+      std::vector<std::string> filenames;
+      filenames = sortFrames(fullPath);
     
 
-    for (const auto& entry : std::filesystem::directory_iterator(fullPath)) {
-        if (entry.is_regular_file() && entry.path().extension() == ".png") {
-            std::string filename = entry.path().filename().string();
-            texture = assets.useTexture(internalFolder + "/" + filename);
+    for (const auto& filename : filenames) {
 
+            texture = assets.useTexture(internalFolder + "/" + filename);
             textures.emplace_back(texture);
-        
-        }
     }
 
     textureDoorCache[color] = textures; 
 
     return textures;
     
+}
+std::map<unsigned int, std::vector<sf::Texture>> Animation::textureNpcCache; 
+
+std::vector<sf::Texture> Animation::npcStates(unsigned int movement) {
+
+    if (textureNpcCache.count(movement) > 0) {
+    return textureNpcCache[movement];
+}
+
+std::vector<sf::Texture> textures;
+std::string assetsFolder {"assets"}; 
+std::string internalFolder; 
+std::string fullPath; 
+sf::Texture texture;
+
+    switch(movement) {
+        case 0:
+        internalFolder = "/carolina/Right"; 
+        break;
+        case 1:
+        internalFolder = "/carolina/Left";
+        break;
+        case 2:
+        internalFolder = "/carolina/jumpingRight"; 
+        break;
+        case 3:
+        internalFolder = "/carolina/jumpingLeft"; 
+        break;
+} 
+
+    fullPath = assetsFolder + internalFolder;
+
+    std::vector<std::string> filenames;
+    filenames = sortFrames(fullPath);
+    
+    for (const auto& filename : filenames) {
+    
+        texture = assets.useTexture(internalFolder + "/" + filename);
+        textures.emplace_back(texture);
+}
+
+    textureNpcCache[movement] = textures; 
+    return textures;
+    
+} 
+std::vector<std::string> Animation::sortFrames(std::string fullPath) {
+
+    std::vector<std::string> filenames; 
+    for (const auto& entry : std::filesystem::directory_iterator(fullPath)) {
+    if (entry.is_regular_file() && entry.path().extension() == ".png") {
+        filenames.push_back(entry.path().filename().string());
+    }  
+}
+    std::sort(filenames.begin(), filenames.end());
+
+    return filenames; 
 }
 

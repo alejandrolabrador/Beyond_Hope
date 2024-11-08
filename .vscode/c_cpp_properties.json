@@ -3,7 +3,8 @@
     {
       "name": "linux-gcc-x64",
       "includePath": [
-        "${workspaceFolder}/**"
+        "${workspaceFolder}/**",
+        "/home/luis/Escritorio/designar_library/DeSiGNAR-2.0.0/include"
       ],
       "defines": [],
       "compilerPath": "/usr/bin/gcc",

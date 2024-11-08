@@ -24,7 +24,7 @@ class Maps : public sf::Drawable{
 
     Maps(const std::string & file); 
     std::map<unsigned int, sf::Texture> setMaps(); 
-    unsigned int updateLevel(unsigned int map, sf::Vector2f playerPosition); 
+    int updateLevel(unsigned int map, sf::Vector2f playerPosition); 
     void updateDoor(sf::Vector2f doorPosition);
     void virtual draw(sf::RenderTarget& target, sf::RenderStates states) const override; 
     
