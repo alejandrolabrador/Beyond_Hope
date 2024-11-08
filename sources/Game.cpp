@@ -44,26 +44,32 @@ while (screen.isOpen()) {
             if(event.key.code == sf::Keyboard::K){
                 
                 auto nextLevel = map->updateLevel(currentLevel, player->getPosition()); 
-                currentMap = mapTree[nextLevel];
+                
+                if(nextLevel != 0){
+                    npcPlayer->NpcPlayerPosition = npcPlayer->setOriginalPosition(); 
+                    player->playerPosition = player->setOriginalPosition(); 
+                     
+                }
+                currentLevel+= nextLevel; 
+                currentMap = mapTree[currentLevel];
                 spriteMap.setTexture(currentMap);
             }
             
             else {
                 player->handleInput(event, &screen);
-                npcPlayer->handleInput(event, &screen);
+                
             }
         }
         
     }
     viewMap.viewCharacter(player, &spriteMap, screen.getSize());
-    inventory->updateInventoryView(viewMap.getView().getCenter()); 
+    inventory->updateInventoryView(viewMap.getView().getCenter(), originalView.getCenter()); 
     float deltaTime = clock.restart().asSeconds();    
     player->update(deltaTime);
-    npcPlayer->update(deltaTime);
+    
     screen.setView(viewMap.getView()); 
     screen.clear();
     screen.draw(spriteMap);
-    //screen.draw(*sprite);
     screen.draw(*map);
     screen.draw(*npcPlayer); 
     screen.draw(*player);
