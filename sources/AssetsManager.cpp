@@ -47,3 +47,13 @@ sf::Music & AssetsManager::playBackgroundMusic(const std::string & fileName, boo
 
   return *musics[fullPath];
 }
+
+sf::Image AssetsManager::loadCollisions(const std::string & fileName) {
+        
+  sf::Image image; 
+        
+    if (!image.loadFromFile(fileName)) {
+        throw std::runtime_error("Error loading image: " + fileName);
+    }
+      return image; 
+    }

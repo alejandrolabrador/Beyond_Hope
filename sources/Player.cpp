@@ -161,7 +161,11 @@ sf::Vector2f Player::getPosition(){
     return playerPosition; 
 }
 
+sf::Sprite& Player::getSprite() {
 
+        return spritePlayer;
+
+}
 
 void Player::updateSpritePosition(){
     

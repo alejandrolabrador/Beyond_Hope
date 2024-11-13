@@ -15,10 +15,13 @@ std::unique_ptr<Player> player = std::make_unique<Player>("/antonio/Frontal/char
 std::unique_ptr<NpcPlayer> npcPlayer = std::make_unique<NpcPlayer>("/carolina/Frontal/character_frontal.png"); 
 std::unique_ptr<Inventory> inventory = std::make_unique<Inventory>("/inventory/life/3livesFull.png");
 std::unique_ptr<Maps> map = std::make_unique<Maps>("/doors/blueDoor.png");
+imageCollisions = animation.collisionStates(); 
+std::unique_ptr<Collisions> collisions = std::make_unique<Collisions>(imageCollisions[0]);
 sf::View originalView = screen.getView();
 mapTree = map->setMaps();
 sf::Texture currentMap = mapTree[currentLevel];
 spriteMap.setTexture(currentMap);
+
 
 sf::Clock clock; 
 
@@ -38,7 +41,7 @@ while (screen.isOpen()) {
                 musicGame.play(); 
 
             } 
-            if(event.key.code == sf::Keyboard::Enter){
+            if(event.key.code == sf::Keyboard::Enter){ 
                 map->updateDoor(player->getPosition()); 
             }
             if(event.key.code == sf::Keyboard::K){
@@ -65,18 +68,25 @@ while (screen.isOpen()) {
     }
     viewMap.viewCharacter(player, &spriteMap, screen.getSize());
     inventory->updateInventoryView(viewMap.getView().getCenter(), originalView.getCenter()); 
+    
+    if(collisions->crackCollision(player)){
+        std::cout << "IT'S TRUE"; 
+    };
+
     float deltaTime = clock.restart().asSeconds();    
     player->update(deltaTime);
     npcPlayer->update(deltaTime);
     
     screen.setView(viewMap.getView()); 
     screen.clear();
+    
     screen.draw(spriteMap);
-    screen.draw(*map);
+    if (currentLevel < 3) {
+    screen.draw(*map);} 
     screen.draw(*npcPlayer); 
     screen.draw(*player);
     screen.draw(*inventory);
-    
+    screen.draw(*collisions);
     screen.display();
     
 }}

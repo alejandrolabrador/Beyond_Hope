@@ -32,6 +32,10 @@
 #include <Inventory.hpp>
 #endif
 
+#ifndef COLLISIONS_HPP
+#include <Collisions.hpp>
+#endif
+
 class Game{
 
 public: 
@@ -46,9 +50,11 @@ void start(sf::RenderWindow & option);
 
 private: 
 
+   Animation animation; 
    Menu menu; 
    sf::RenderWindow window;
    ViewMap viewMap; 
+   std::vector<sf::Image> imageCollisions; 
    AssetsManager asset; 
    std::map<unsigned int, sf::Texture> mapTree; 
    unsigned currentLevel = 0; 

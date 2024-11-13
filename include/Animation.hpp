@@ -15,6 +15,7 @@ class Animation {
     std::vector<sf::Texture> inventoryStates(unsigned int quantity); 
     std::vector<sf::Texture> playerStates(unsigned int movement); 
     std::vector<sf::Texture> npcStates(unsigned int movement);
+    std::vector<sf::Image> collisionStates(); 
     
     private:
 

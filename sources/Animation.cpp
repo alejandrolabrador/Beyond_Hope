@@ -173,6 +173,21 @@ sf::Texture texture;
     return textures;
     
 } 
+
+std::vector<sf::Image> Animation::collisionStates(){
+
+    std::string fullPath{ "assets/collisions" };
+    std::vector<sf::Image> collisions;
+
+    std::vector<std::string> collisionsDirectory = sortFrames(fullPath); 
+
+    for (const auto& level : collisionsDirectory) {
+        
+        std::string fullFileName = fullPath + "/" + level; 
+        collisions.emplace_back(assets.loadCollisions(fullFileName)); // Almacenar directamente
+    }
+    return collisions; 
+}
 std::vector<std::string> Animation::sortFrames(std::string fullPath) {
 
     std::vector<std::string> filenames; 
