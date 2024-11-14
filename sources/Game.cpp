@@ -63,6 +63,8 @@ while (screen.isOpen()) {
                      
                 }
                 currentLevel+= nextLevel; 
+                if (currentLevel >= mapTree.size()) {
+                currentLevel = mapTree.size() - 1; }
                 currentMap = mapTree[currentLevel];
                 spriteMap.setTexture(currentMap);
             }
@@ -108,7 +110,9 @@ while (screen.isOpen()) {
     screen.draw(*player);
     screen.draw(*inventory);
     if(game == gameState::over){
-    spriteGameOver.setPosition(viewMap.getView().getCenter().x /2 ,viewMap.getView().getCenter().y / 2); 
+
+    spriteGameOver.setPosition(viewMap.getView().getCenter().x - spriteGameOver.getGlobalBounds().width / 2,
+                               viewMap.getView().getCenter().y - spriteGameOver.getGlobalBounds().height / 2); 
     screen.draw(spriteGameOver);
     musicGame.pause();}
     screen.display();

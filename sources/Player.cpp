@@ -84,7 +84,7 @@ void Player::jumpLeft(){
             sprite.setScale(0.5f, 0.5f);
             statesPlayer.push_back(sprite);
         }      
-        jumpVelocity = -100.0f; 
+        jumpVelocity = -200.0f; 
         isJumping = true; 
      } 
 
@@ -93,7 +93,7 @@ void Player::jumpLeft(){
 void Player::update(float deltaTime) {
     
     playerPosition.y += jumpVelocity * deltaTime;
-    jumpVelocity += 150.0f * deltaTime; 
+    jumpVelocity += 140.0f * deltaTime; 
    
     if (playerPosition.y >= 493) { 
         playerPosition.y = 493; 

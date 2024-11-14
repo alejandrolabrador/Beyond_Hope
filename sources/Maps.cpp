@@ -31,7 +31,6 @@ std::sort(filenames.begin(), filenames.end());
 for (const auto& filename : filenames) {
     sf::Texture map = assets.useTexture("/maps/" + filename);
     mapTree.emplace(priority, map);
-    std::cout << filename;
     ++priority;
 }
    return mapTree; 
