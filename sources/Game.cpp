@@ -39,10 +39,15 @@ while (screen.isOpen()) {
 
 
             if (event.key.code == sf::Keyboard::Escape) {
+                
+                if(game == gameState::over){
+                   screen.close(); }
+
                 musicGame.pause();
                 screen.setView(originalView); 
                 Menu menuContinue(screen, Menu::Option::Continue);
                 musicGame.play(); 
+                
 
             } 
             if(event.key.code == sf::Keyboard::Enter){ 
@@ -63,8 +68,10 @@ while (screen.isOpen()) {
             }
             
             else {
+
+                if(game == gameState::play){
                 player->handleInput(event, &screen);
-                npcPlayer->handleInput(event, &screen);
+                npcPlayer->handleInput(event, &screen);}
                 
             }
         }
@@ -99,11 +106,11 @@ while (screen.isOpen()) {
     screen.draw(*map);} 
     screen.draw(*npcPlayer); 
     screen.draw(*player);
-    screen.draw(*collisions);
     screen.draw(*inventory);
     if(game == gameState::over){
-    spriteGameOver.setPosition(viewMap.getView().getCenter());
-    screen.draw(spriteGameOver);}
+    spriteGameOver.setPosition(viewMap.getView().getCenter().x /2 ,viewMap.getView().getCenter().y / 2); 
+    screen.draw(spriteGameOver);
+    musicGame.pause();}
     screen.display();
     
 }}
