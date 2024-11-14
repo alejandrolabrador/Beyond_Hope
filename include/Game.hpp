@@ -47,10 +47,19 @@ Game();
 
 void start(sf::RenderWindow & option); 
 
+enum class gameState{
+
+over, 
+play, 
+
+};
+
 
 private: 
 
    Animation animation; 
+   sf::Texture gameOver;
+   sf::Sprite spriteGameOver; 
    Menu menu; 
    sf::RenderWindow window;
    ViewMap viewMap; 
@@ -60,5 +69,8 @@ private:
    unsigned currentLevel = 0; 
    sf::Sprite spriteMap;
    sf::Sprite spritePlayer; 
+   Inventory::items items; 
+   gameState game = gameState::play; 
+   
    
 };

@@ -27,7 +27,7 @@ void Inventory::addItem(items item, int quantity) {
         quantityItems.push_back(std::make_tuple(item, quantity));
     }
 
-void Inventory::quitItem(items item, int quantity) {
+void Inventory::removeItem(items item, int quantity) {
     
     for(auto& tuple: quantityItems){
 

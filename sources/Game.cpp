@@ -3,6 +3,10 @@
 Game::Game(sf::RenderWindow& window) : 
 menu(window, Menu::Option::Play) {
 
+gameOver = asset.useTexture("/resources/fonts/gameOver.png");
+spriteGameOver.setTexture(gameOver);
+spriteGameOver.setScale(1.8f, 1.8f);
+
 menu; 
 start(window);
 }
@@ -18,10 +22,10 @@ std::unique_ptr<Maps> map = std::make_unique<Maps>("/doors/blueDoor.png");
 imageCollisions = animation.collisionStates(); 
 std::unique_ptr<Collisions> collisions = std::make_unique<Collisions>(imageCollisions[0]);
 sf::View originalView = screen.getView();
+sf::Color targetColor(255, 0, 0);
 mapTree = map->setMaps();
 sf::Texture currentMap = mapTree[currentLevel];
 spriteMap.setTexture(currentMap);
-
 
 sf::Clock clock; 
 
@@ -69,13 +73,23 @@ while (screen.isOpen()) {
     viewMap.viewCharacter(player, &spriteMap, screen.getSize());
     inventory->updateInventoryView(viewMap.getView().getCenter(), originalView.getCenter()); 
     
-    if(collisions->crackCollision(player)){
-        std::cout << "IT'S TRUE"; 
-    };
-
     float deltaTime = clock.restart().asSeconds();    
     player->update(deltaTime);
     npcPlayer->update(deltaTime);
+
+    if(collisions->crackCollision(player, imageCollisions[currentLevel], targetColor)){
+        
+        sf::Vector2f newPosition((player->playerPosition.x-100), 493);
+        items = Inventory::items::medicine; 
+        inventory->removeItem(items, 1);
+        inventory->updateSprite(items);
+        player->playerPosition = newPosition; 
+        
+      if(inventory->getItemQuantity(items) == 0){
+    
+        game = gameState::over; 
+    }  
+    }
     
     screen.setView(viewMap.getView()); 
     screen.clear();
@@ -85,8 +99,11 @@ while (screen.isOpen()) {
     screen.draw(*map);} 
     screen.draw(*npcPlayer); 
     screen.draw(*player);
-    screen.draw(*inventory);
     screen.draw(*collisions);
+    screen.draw(*inventory);
+    if(game == gameState::over){
+    spriteGameOver.setPosition(viewMap.getView().getCenter());
+    screen.draw(spriteGameOver);}
     screen.display();
     
 }}
