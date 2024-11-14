@@ -23,6 +23,7 @@ void virtual draw(sf::RenderTarget& target, sf::RenderStates states) const overr
 sf::Vector2f setOriginalPosition(); 
 sf::Vector2f getPosition();
 sf::Vector2f playerPosition;
+sf::Sprite& getSprite();
 
 protected:
 

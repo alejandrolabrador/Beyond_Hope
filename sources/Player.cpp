@@ -27,7 +27,7 @@ void Player::moveRight() {
     if(playerPosition.x <= 4850){
        playerPosition.x += velocityPlayer; 
     }
-    spritePlayer.setPosition(playerPosition);
+    //spritePlayer.setPosition(playerPosition);
     currentPosition++; 
 }
 
@@ -57,8 +57,7 @@ void Player::moveLeft() {
 
 void Player::jump() {
     if (!isJumping) { 
-        //currentPosition = 0; 
-        //jumpFrame = 0;
+
         playerTextures = animation.playerStates(2); 
         statesPlayer.clear();
 
@@ -94,7 +93,7 @@ void Player::jumpLeft(){
 void Player::update(float deltaTime) {
     
     playerPosition.y += jumpVelocity * deltaTime;
-    jumpVelocity += 200.0f * deltaTime; 
+    jumpVelocity += 150.0f * deltaTime; 
    
     if (playerPosition.y >= 493) { 
         playerPosition.y = 493; 
@@ -161,7 +160,11 @@ sf::Vector2f Player::getPosition(){
     return playerPosition; 
 }
 
+sf::Sprite& Player::getSprite() {
 
+        return spritePlayer;
+
+}
 
 void Player::updateSpritePosition(){
     

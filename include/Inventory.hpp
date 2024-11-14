@@ -10,6 +10,8 @@
 
 class Inventory: public sf::Drawable {
 
+public:
+
 enum class items{
 
 food, 
@@ -17,13 +19,11 @@ medicine,
 
 };
 
-public:
-
 Inventory(){}; 
 Inventory(const std::string& file);
 
 void addItem(items item, int quantity);
-void quitItem(items item, int quantity);
+void removeItem(items item, int quantity);
 int getItemQuantity(items item) const;
 void updateSprite(items item);
 void updateInventoryView(sf::Vector2f view, sf::Vector2f originalView);
